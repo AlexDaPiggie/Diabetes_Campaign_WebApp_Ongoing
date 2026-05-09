@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diabetes Awareness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --primary:        #4a8c6f;
+      --primary-deep:   #336b54;
+      --primary-light:  #e8f4ef;
+      --accent:         #e8b84b;
+      --accent-light:   #fdf6e3;
+
+      --ink:            #1a2e25;
+      --ink-tint:       #2e4a3a;
+      --slate:          #4a6358;
+      --steel:          #6b8278;
+      --muted:          #9ab0a8;
+
+      --canvas:         #ffffff;
+      --surface:        #f7faf8;
+      --surface-warm:   #f2f8f5;
+      --hairline:       #dce9e2;
+      --hairline-soft:  #eaf2ee;
+      --beige-deep:     #c8ddd4;
+
+      --on-primary:     #ffffff;
+      --on-dark:        #ffffff;
+
+      --rounded-sm:  6px;
+      --rounded-md:  8px;
+      --rounded-lg:  12px;
+      --rounded-xl:  16px;
+      --rounded-full: 9999px;
+
+      --font-display: 'Playfair Display', 'Times New Roman', Georgia, serif;
+      --font-ui:      'Inter', ui-sans-serif, system-ui, sans-serif;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-ui);
+      font-size: 16px;
+      color: var(--ink);
+      background: var(--canvas);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Layout helpers ── */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--canvas);
+      border-bottom: 1px solid var(--hairline-soft);
+      height: 64px;
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      gap: 0;
+    }
+    .nav__logo-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-right: 48px;
+    }
+    .nav__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--rounded-md);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav__icon svg { width: 22px; height: 22px; fill: var(--on-dark); }
+    .nav__brand {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.2px;
+      line-height: 1.2;
+    }
+    .nav__brand span { display: block; font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--slate); }
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+      flex: 1;
+    }
+    .nav__links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate);
+      transition: color 0.15s;
+    }
+    .nav__links a:hover { color: var(--primary); }
+    .nav__cta {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.3;
+      padding: 10px 20px;
+      border-radius: var(--rounded-md);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover { background: var(--primary-deep); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--hairline);
+    }
+    .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      background: var(--surface-warm);
+      padding: 96px 0 0;
+      overflow: hidden;
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: end;
+    }
+    .hero__text { padding-bottom: 80px; }
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .hero__eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: 64px;
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -1px;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .hero__title em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    .hero__subtitle {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--slate);
+      max-width: 460px;
+      margin-bottom: 36px;
+    }
+    .hero__actions { display: flex; align-items: center; gap: 12px; }
+    .hero__stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--hairline);
+    }
+    .hero__stat-num {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .hero__stat-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--steel);
+      margin-top: 6px;
+    }
+    .hero__image-wrap {
+      position: relative;
+      align-self: end;
+    }
+    .hero__image-wrap img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: var(--rounded-xl) var(--rounded-xl) 0 0;
+    }
+    .hero__image-badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: var(--canvas);
+      border-radius: var(--rounded-lg);
+      padding: 16px 20px;
+      box-shadow: rgba(0,0,0,0.10) 0 8px 24px -4px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      max-width: 280px;
+    }
+    .hero__image-badge-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--rounded-md);
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero__image-badge-icon svg { width: 22px; height: 22px; stroke: var(--primary); fill: none; stroke-width: 2; }
+    .hero__image-badge-text strong { display: block; font-size: 14px; font-weight: 600; color: var(--ink); }
+    .hero__image-badge-text span { font-size: 12px; color: var(--steel); }
+
+    /* ════════════════════════════════════════
+       SECTION STRIPE (closing gradient)
+    ════════════════════════════════════════ */
+    .stripe {
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary-light) 100%);
+    }
+
+    /* ════════════════════════════════════════
+       INFO PAGES (alternating image/text)
+    ════════════════════════════════════════ */
+    .info-section {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--hairline-soft);
+    }
+    .info-section:nth-child(even) {
+      background: var(--surface);
+    }
+    .info-section__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    /* reverse: image right, text left */
+    .info-section--reversed .info-section__inner {
+      direction: rtl;
+    }
+    .info-section--reversed .info-section__inner > * {
+      direction: ltr;
+    }
+
+    .info-section__image {
+      border-radius: var(--rounded-xl);
+      overflow: hidden;
+      position: relative;
+    }
+    .info-section__image img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .info-section__text {}
+    .info-section__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .info-section__eyebrow::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    .info-section__title {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .info-section__body {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--slate);
+      margin-bottom: 32px;
+    }
+    .info-section__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .info-section__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+    .info-section__list li::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .info-section__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary);
+      transition: gap 0.15s;
+    }
+    .info-section__link:hover { gap: 10px; }
+    .info-section__link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer {
+      background: var(--surface-warm);
+      padding: 64px 0 32px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer__brand-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .footer__tagline {
+      font-size: 14px;
+      color: var(--steel);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+    .footer__col-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 16px;
+    }
+    .footer__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer__links a {
+      font-size: 14px;
+      color: var(--steel);
+      transition: color 0.15s;
+    }
+    .footer__links a:hover { color: var(--primary); }
+    .footer__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid var(--hairline);
+    }
+    .footer__copy { font-size: 13px; color: var(--muted); }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 1023px) {
+      .hero__inner,
+      .info-section__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .info-section--reversed .info-section__inner {
+        direction: ltr;
+      }
+      .hero__title { font-size: 48px; }
+      .info-section__title { font-size: 34px; }
+      .hero__image-wrap img { height: 380px; border-radius: var(--rounded-xl); }
+      .hero { padding-bottom: 64px; }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 639px) {
+      .container { padding: 0 20px; }
+      .hero { padding: 64px 0; }
+      .hero__title { font-size: 36px; }
+      .info-section { padding: 64px 0; }
+      .info-section__title { font-size: 28px; }
+      .info-section__image img { height: 300px; }
+      .nav__links { display: none; }
+      .hero__stats { flex-wrap: wrap; gap: 24px; }
+      .footer__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <div class="nav__logo-block">
+          <div class="nav__icon">
+            <!-- heart-pulse icon -->
+            <svg viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          <div>
+            <div class="nav__brand">Diabetes Awareness<span>Living Well Together</span></div>
+          </div>
+        </div>
+        <ul class="nav__links">
+          <li><a href="#symptoms">Symptoms</a></li>
+          <li><a href="#medications">Medications</a></li>
+          <li><a href="#community">Community</a></li>
+        </ul>
+        <div class="nav__cta">
+          <a href="#community" class="btn btn-secondary">Find Support</a>
+          <a href="#symptoms" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__inner">
+
+        <div class="hero__text">
+          <div class="hero__eyebrow">Diabetes Awareness</div>
+          <h1 class="hero__title">Understanding<br>diabetes.<br><em>Together.</em></h1>
+          <p class="hero__subtitle">
+            Millions of people around the world live with diabetes. We're here to
+            help you recognise the signs, understand your treatment options, and
+            connect with a community that truly gets it.
+          </p>
+          <div class="hero__actions">
+            <a href="#symptoms" class="btn btn-primary">Explore Symptoms</a>
+            <a href="#community" class="btn btn-secondary">Join the Community</a>
+          </div>
+          <div class="hero__stats">
+            <div>
+              <div class="hero__stat-num">537M</div>
+              <div class="hero__stat-label">Adults living with diabetes worldwide</div>
+            </div>
+            <div>
+              <div class="hero__stat-num">1 in 2</div>
+              <div class="hero__stat-label">People go undiagnosed</div>
+            </div>
+            <div>
+              <div class="hero__stat-num">90%</div>
+              <div class="hero__stat-label">Cases are Type 2 diabetes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__image-wrap">
+          <img src="Guidelines/Diabetes_Community.png" alt="People living well with diabetes" />
+          <div class="hero__image-badge">
+            <div class="hero__image-badge-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            </div>
+            <div class="hero__image-badge-text">
+              <strong>Early detection saves lives</strong>
+              <span>Know your symptoms today</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="stripe"></div>
+
+  <!-- ═══ PAGE 1 — Symptoms ═══ -->
+  <!-- image LEFT, text RIGHT — matches Pages.png -->
+  <section class="info-section" id="symptoms">
+    <div class="container">
+      <div class="info-section__inner">
+
+        <div class="info-section__image">
+          <img src="Guidelines/Patients_in_Hospital.png" alt="Patient in hospital corridor" />
+        </div>
+
+        <div class="info-section__text">
+          <div class="info-section__eyebrow">Symptoms</div>
+          <h2 class="info-section__title">If you have any of these symptoms, visit a doctor.</h2>
+          <p class="info-section__body">
+            Diabetes can develop gradually and its early warning signs are often easy to dismiss.
+            Recognising them early gives you the best chance of managing the condition
+            effectively and avoiding serious complications.
+          </p>
+          <ul class="info-section__list">
+            <li>Excessive thirst and frequent urination</li>
+            <li>Unexplained weight loss or gain</li>
+            <li>Blurred vision and persistent fatigue</li>
+            <li>Slow-healing wounds or frequent infections</li>
+            <li>Tingling or numbness in hands and feet</li>
+          </ul>
+          <a href="#" class="info-section__link">
+            Learn more about symptoms
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PAGE 2 — Medications ═══ -->
+  <!-- image RIGHT, text LEFT — reversed from page 1 -->
+  <section class="info-section info-section--reversed" id="medications">
+    <div class="container">
+      <div class="info-section__inner">
+
+        <div class="info-section__image">
+          <img src="Guidelines/Medication.png" alt="Diabetes medication and monitoring supplies" />
+        </div>
+
+        <div class="info-section__text">
+          <div class="info-section__eyebrow">Medications</div>
+          <h2 class="info-section__title">Do you want to know more about your medication?</h2>
+          <p class="info-section__body">
+            Managing diabetes often involves a combination of lifestyle changes and medication.
+            Understanding what each treatment does — and how to use it safely — puts you
+            firmly in control of your own health journey.
+          </p>
+          <ul class="info-section__list">
+            <li>Insulin therapy: types, dosing, and delivery methods</li>
+            <li>Oral medications and how they work</li>
+            <li>Continuous glucose monitoring (CGM) devices</li>
+            <li>Diet and exercise as first-line treatment</li>
+            <li>When and how to adjust your medication plan</li>
+          </ul>
+          <a href="#" class="info-section__link">
+            Explore medication guides
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PAGE 3 — Community ═══ -->
+  <!-- image LEFT, text RIGHT — alternates back -->
+  <section class="info-section" id="community">
+    <div class="container">
+      <div class="info-section__inner">
+
+        <div class="info-section__image">
+          <img src="Guidelines/Diabetes_Community.png" alt="Diabetes community members showing CGM patches" />
+        </div>
+
+        <div class="info-section__text">
+          <div class="info-section__eyebrow">Community</div>
+          <h2 class="info-section__title">Looking for a diabetes community?</h2>
+          <p class="info-section__body">
+            You are not alone. Hundreds of thousands of people living with diabetes have found
+            strength, advice, and friendship through shared experience. Our community is open
+            to everyone — newly diagnosed or a long-time warrior.
+          </p>
+          <ul class="info-section__list">
+            <li>Connect with others who truly understand</li>
+            <li>Share your story and inspire someone else</li>
+            <li>Access peer-reviewed tips on daily management</li>
+            <li>Join local and online support groups</li>
+            <li>Participate in awareness events worldwide</li>
+          </ul>
+          <a href="#" class="info-section__link">
+            Join the community
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="stripe"></div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name">Diabetes Awareness</div>
+          <p class="footer__tagline">
+            Empowering people living with diabetes with knowledge,
+            community, and hope — one step at a time.
+          </p>
+        </div>
+        <div>
+          <div class="footer__col-title">Learn</div>
+          <ul class="footer__links">
+            <li><a href="#symptoms">Symptoms</a></li>
+            <li><a href="#medications">Medications</a></li>
+            <li><a href="#">Type 1 Diabetes</a></li>
+            <li><a href="#">Type 2 Diabetes</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Support</div>
+          <ul class="footer__links">
+            <li><a href="#community">Community</a></li>
+            <li><a href="#">Find a Doctor</a></li>
+            <li><a href="#">Mental Health</a></li>
+            <li><a href="#">Helpline</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">About</div>
+          <ul class="footer__links">
+            <li><a href="#">Our Mission</a></li>
+            <li><a href="#">Research</a></li>
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2026 Diabetes Awareness. All rights reserved.</span>
+        <span class="footer__copy">Made with care for the diabetes community.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
