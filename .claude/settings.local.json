@@ -3,7 +3,8 @@
     "allow": [
       "Bash(Get-ChildItem -Recurse -Depth 2 -Exclude node_modules,.git,__pycache__,.venv)",
       "Bash(Select-Object Mode, Name, Length)",
-      "Bash(Format-Table -AutoSize)"
+      "Bash(Format-Table -AutoSize)",
+      "Bash(Get-Content *)"
     ]
   }
 }

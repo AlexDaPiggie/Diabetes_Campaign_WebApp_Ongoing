@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% block body %}
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="fixed top-0 inset-x-0 z-50 bg-canvas/80 backdrop-blur-xl border-b border-border/50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center h-16 gap-0">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 mr-10 shrink-0">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-accent to-accent-bright flex items-center justify-center animate-pulse-glow">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <div>
+          <div class="font-display text-lg text-ink leading-tight">{{ site.title }}</div>
+          <div class="font-ui text-[10px] font-semibold tracking-widest uppercase text-ink-muted leading-none">{{ site.tagline }}</div>
+        </div>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="hidden md:flex items-center gap-8">
+        {% for link in nav.links %}
+        <li><a href="{{ link.href }}" class="text-sm font-medium text-ink-dim hover:text-ink transition-colors duration-200">{{ link.label }}</a></li>
+        {% endfor %}
+      </ul>
+
+      <!-- CTAs -->
+      <div class="ml-auto flex items-center gap-3">
+        <a href="{{ nav.cta_secondary.href }}" class="hidden sm:inline-flex items-center text-sm font-medium text-ink-dim hover:text-ink transition-colors duration-200 px-4 py-2 rounded-lg border border-border hover:border-accent/40">
+          {{ nav.cta_secondary.label }}
+        </a>
+        <a href="{{ nav.cta_primary.href }}" class="inline-flex items-center text-sm font-medium bg-accent hover:bg-accent-bright text-white transition-colors duration-200 px-5 py-2.5 rounded-lg">
+          {{ nav.cta_primary.label }}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════ WELCOME ═══════════════ -->
+<section class="relative pt-16 flex items-center justify-center text-center min-h-[55vh] bg-gradient-to-br from-accent/20 via-accent/10 to-canvas">
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.08),transparent_70%)]"></div>
+  <div class="relative max-w-3xl mx-auto px-6 py-20">
+    <h2 class="font-display text-5xl md:text-6xl font-medium text-ink mb-6 tracking-tight animate-fade-up">
+      {{ welcome.title }}
+    </h2>
+    <div class="w-72 max-w-[70%] h-px mx-auto mb-6 bg-gradient-to-r from-transparent via-ink-dim to-transparent"></div>
+    <p class="text-lg text-ink-dim leading-relaxed max-w-xl mx-auto animate-fade-up" style="animation-delay: 0.15s">
+      {{ welcome.subtitle }}
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="relative py-20 lg:py-28 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+      <!-- Text -->
+      <div>
+        <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent-bright mb-5 animate-fade-up">
+          <span class="w-5 h-0.5 bg-accent rounded-full"></span>
+          {{ hero.eyebrow }}
+        </span>
+        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-medium text-ink leading-[1.06] tracking-tight mb-6 animate-fade-up" style="animation-delay: 0.1s">
+          {{ hero.headline }}
+        </h1>
+        <p class="text-lg text-ink-dim leading-relaxed max-w-lg mb-8 animate-fade-up" style="animation-delay: 0.2s">
+          {{ hero.subtitle }}
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 mb-10 animate-fade-up" style="animation-delay: 0.25s">
+          <a href="{{ hero.cta_primary.href }}" class="inline-flex items-center text-sm font-medium bg-accent hover:bg-accent-bright text-white transition-all duration-200 px-6 py-3 rounded-lg">
+            {{ hero.cta_primary.label }}
+          </a>
+          <a href="{{ hero.cta_secondary.href }}" class="inline-flex items-center text-sm font-medium text-ink-dim hover:text-ink transition-colors duration-200 px-6 py-3 rounded-lg border border-border hover:border-accent/40">
+            {{ hero.cta_secondary.label }}
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex flex-wrap gap-8 lg:gap-12 pt-6 border-t border-border animate-fade-up" style="animation-delay: 0.3s">
+          {% for stat in hero.stats %}
+          <div>
+            <div class="font-display text-4xl font-medium text-ink tracking-tight">{{ stat.number }}</div>
+            <div class="text-sm text-ink-muted mt-1.5 max-w-[140px] leading-snug">{{ stat.label }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="relative animate-scale-in" style="animation-delay: 0.2s">
+        <div class="rounded-2xl overflow-hidden border border-border/50 shadow-glow-lg">
+          <img
+            src="{{ hero.image }}"
+            alt="{{ hero.image_alt }}"
+            class="w-full h-[340px] sm:h-[420px] lg:h-[480px] object-cover transition-transform duration-700 hover:scale-105"
+            loading="eager"
+          />
+        </div>
+        <!-- Badge -->
+        <div class="absolute bottom-5 left-5 bg-surface/95 backdrop-blur-md border border-border/60 rounded-xl p-4 pr-5 flex items-center gap-3.5 shadow-card max-w-[260px]">
+          <div class="w-10 h-10 rounded-lg bg-accent-glow border border-accent/20 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-accent-bright" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          </div>
+          <div>
+            <strong class="block text-sm font-semibold text-ink">{{ hero.badge.title }}</strong>
+            <span class="text-xs text-ink-muted">{{ hero.badge.subtitle }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ GRADIENT STRIPE ═══════════════ -->
+<div class="h-1.5 bg-gradient-to-r from-accent via-accent-bright to-accent/30"></div>
+
+<!-- ═══════════════ INFO SECTIONS ═══════════════ -->
+{% for section in sections %}
+<section id="{{ section.id }}" class="relative py-20 lg:py-28 border-b border-border/40 {% if loop.index0 % 2 == 1 %}bg-surface/50{% endif %}">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center {% if section.reversed %}direction-rtl{% endif %}">
+
+      <!-- Image -->
+      <div class="{% if section.reversed %}lg:order-2{% endif %} reveal">
+        <div class="rounded-2xl overflow-hidden border border-border/50 shadow-card">
+          <img
+            data-src="{{ section.image }}"
+            alt="{{ section.image_alt }}"
+            class="lazy w-full h-[300px] sm:h-[380px] lg:h-[420px] object-cover transition-transform duration-700 hover:scale-105"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 420'%3E%3Crect fill='%23151d2e' width='800' height='420'/%3E%3C/svg%3E"
+          />
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="{% if section.reversed %}lg:order-1{% endif %}">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent-bright mb-4 reveal">
+          <span class="w-4 h-0.5 bg-accent rounded-full"></span>
+          {{ section.eyebrow }}
+        </span>
+        <h2 class="font-display text-4xl sm:text-5xl font-medium text-ink leading-[1.12] tracking-tight mb-5 reveal" style="transition-delay: 0.1s">
+          {{ section.title }}
+        </h2>
+        <p class="text-base text-ink-dim leading-relaxed mb-6 reveal" style="transition-delay: 0.15s">
+          {{ section.body }}
+        </p>
+
+        <ul class="space-y-3 mb-8 reveal" style="transition-delay: 0.2s">
+          {% for item in section.bullet_items %}
+          <li class="flex items-start gap-3 text-sm text-ink-dim leading-relaxed">
+            <span class="w-2 h-2 rounded-full bg-accent shrink-0 mt-1.5"></span>
+            {{ item }}
+          </li>
+          {% endfor %}
+        </ul>
+
+        <a href="{{ section.link.href }}" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-bright hover:gap-2.5 transition-all duration-200 reveal" style="transition-delay: 0.25s">
+          {{ section.link.label }}
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+<!-- ═══════════════ GRADIENT STRIPE ═══════════════ -->
+<div class="h-1.5 bg-gradient-to-r from-accent via-accent-bright to-accent/30"></div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="bg-surface/60 border-t border-border/30 py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
+
+      <!-- Brand -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <div class="font-display text-xl font-medium text-ink mb-3">{{ site.title }}</div>
+        <p class="text-sm text-ink-muted leading-relaxed max-w-xs">{{ site.footer_tagline }}</p>
+      </div>
+
+      <!-- Link columns -->
+      {% for col in footer.columns %}
+      <div>
+        <div class="text-xs font-semibold tracking-widest uppercase text-ink-dim mb-4">{{ col.title }}</div>
+        <ul class="space-y-2.5">
+          {% for link in col.links %}
+          <li><a href="{{ link.href }}" class="text-sm text-ink-muted hover:text-ink transition-colors duration-200">{{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-border/50">
+      <span class="text-xs text-ink-muted">&copy; {{ site.copyright }}</span>
+      <span class="text-xs text-ink-muted">{{ site.footer_note }}</span>
+    </div>
+  </div>
+</footer>
+
+{% endblock %}
+
+{% block scripts %}
+{# direction-rtl helper for reversed sections #}
+{% endblock %}

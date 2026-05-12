@@ -1,0 +1,124 @@
+{
+  "site": {
+    "title": "Diabetes Awareness",
+    "tagline": "Living Well Together",
+    "footer_tagline": "Empowering people living with diabetes with knowledge, community, and hope — one step at a time.",
+    "copyright": "2026 Diabetes Awareness. All rights reserved.",
+    "footer_note": "Made with care for the diabetes community."
+  },
+  "nav": {
+    "links": [
+      { "label": "Symptoms", "href": "#symptoms" },
+      { "label": "Medications", "href": "#medications" },
+      { "label": "Community", "href": "#community" }
+    ],
+    "cta_primary": { "label": "Learn More", "href": "#symptoms" },
+    "cta_secondary": { "label": "Find Support", "href": "#community" }
+  },
+  "welcome": {
+    "title": "Welcome",
+    "subtitle": "Millions of people around the world live with diabetes. We're here to help you recognise the signs, understand your treatment options, and connect with a community that truly gets it."
+  },
+  "hero": {
+    "eyebrow": "Diabetes Awareness",
+    "headline": "Understanding diabetes. Together.",
+    "subtitle": "It is easier to fight diabetes when you understand it. At the end of the day, it is not just a matter of insulin. But also the lifestyle and genetics.",
+    "cta_primary": { "label": "Explore Symptoms", "href": "#symptoms" },
+    "cta_secondary": { "label": "Join the Community", "href": "#community" },
+    "image": "/static/images/Diabetes_Community.png",
+    "image_alt": "People living well with diabetes",
+    "badge": {
+      "title": "Early detection saves lives",
+      "subtitle": "Know your symptoms today"
+    },
+    "stats": [
+      { "number": "537M", "label": "Adults living with diabetes worldwide" },
+      { "number": "1 in 2", "label": "People go undiagnosed" },
+      { "number": "90%", "label": "Cases are Type 2 diabetes" }
+    ]
+  },
+  "sections": [
+    {
+      "id": "symptoms",
+      "eyebrow": "Symptoms",
+      "title": "If you have any of these symptoms, visit a doctor.",
+      "body": "Diabetes can develop gradually and its early warning signs are often easy to dismiss. Recognising them early gives you the best chance of managing the condition effectively and avoiding serious complications.",
+      "image": "/static/images/Patients_in_Hospital.png",
+      "image_alt": "Patient in hospital corridor",
+      "reversed": false,
+      "bullet_items": [
+        "Excessive thirst and frequent urination",
+        "Unexplained weight loss or gain",
+        "Blurred vision and persistent fatigue",
+        "Slow-healing wounds or frequent infections",
+        "Tingling or numbness in hands and feet"
+      ],
+      "link": { "label": "Learn more about symptoms", "href": "#" }
+    },
+    {
+      "id": "medications",
+      "eyebrow": "Medications",
+      "title": "Do you want to know more about your medication?",
+      "body": "Managing diabetes often involves a combination of lifestyle changes and medication. Understanding what each treatment does — and how to use it safely — puts you firmly in control of your own health journey.",
+      "image": "/static/images/Medication.png",
+      "image_alt": "Diabetes medication and monitoring supplies",
+      "reversed": true,
+      "bullet_items": [
+        "Insulin therapy: types, dosing, and delivery methods",
+        "Oral medications and how they work",
+        "Continuous glucose monitoring (CGM) devices",
+        "Diet and exercise as first-line treatment",
+        "When and how to adjust your medication plan"
+      ],
+      "link": { "label": "Explore medication guides", "href": "#" }
+    },
+    {
+      "id": "community",
+      "eyebrow": "Community",
+      "title": "Looking for a diabetes community?",
+      "body": "You are not alone. Hundreds of thousands of people living with diabetes have found strength, advice, and friendship through shared experience. Our community is open to everyone — newly diagnosed or a long-time warrior.",
+      "image": "/static/images/Diabetes_Community.png",
+      "image_alt": "Diabetes community members showing CGM patches",
+      "reversed": false,
+      "bullet_items": [
+        "Connect with others who truly understand",
+        "Share your story and inspire someone else",
+        "Access peer-reviewed tips on daily management",
+        "Join local and online support groups",
+        "Participate in awareness events worldwide"
+      ],
+      "link": { "label": "Join the community", "href": "#" }
+    }
+  ],
+  "footer": {
+    "columns": [
+      {
+        "title": "Learn",
+        "links": [
+          { "label": "Symptoms", "href": "#symptoms" },
+          { "label": "Medications", "href": "#medications" },
+          { "label": "Type 1 Diabetes", "href": "#" },
+          { "label": "Type 2 Diabetes", "href": "#" }
+        ]
+      },
+      {
+        "title": "Support",
+        "links": [
+          { "label": "Community", "href": "#community" },
+          { "label": "Find a Doctor", "href": "#" },
+          { "label": "Mental Health", "href": "#" },
+          { "label": "Helpline", "href": "#" }
+        ]
+      },
+      {
+        "title": "About",
+        "links": [
+          { "label": "Our Mission", "href": "#" },
+          { "label": "Research", "href": "#" },
+          { "label": "Partners", "href": "#" },
+          { "label": "Contact", "href": "#" }
+        ]
+      }
+    ]
+  }
+}

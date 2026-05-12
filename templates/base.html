@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Playfair Display"', '"Times New Roman"', 'Georgia', 'serif'],
+            ui: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            canvas:   '#080c14',
+            surface:  '#0f1623',
+            raised:   '#151d2e',
+            overlay:  '#1a2438',
+            border:   '#1e2a40',
+            accent:   '#3b82f6',
+            'accent-bright': '#60a5fa',
+            'accent-glow': 'rgba(59, 130, 246, 0.15)',
+            ink:      '#f1f5f9',
+            'ink-dim':'#94a3b8',
+            'ink-muted': '#64748b',
+            success:  '#34d399',
+            warning:  '#fbbf24',
+          },
+          borderRadius: {
+            card: '16px',
+          },
+          boxShadow: {
+            card: '0 1px 2px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.15)',
+            glow: '0 0 30px rgba(59, 130, 246, 0.08)',
+            'glow-lg': '0 0 60px rgba(59, 130, 246, 0.12)',
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.7s ease-out forwards',
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+            'scale-in': 'scaleIn 0.5s ease-out forwards',
+            'slide-right': 'slideRight 0.6s ease-out forwards',
+            'slide-left': 'slideLeft 0.6s ease-out forwards',
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.95)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
+            },
+            slideRight: {
+              '0%': { opacity: '0', transform: 'translateX(-24px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            slideLeft: {
+              '0%': { opacity: '0', transform: 'translateX(24px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.05)' },
+              '50%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.15)' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  {% block head %}{% endblock %}
+</head>
+<body class="bg-canvas text-ink font-ui antialiased">
+
+  {% block body %}{% endblock %}
+
+  <script src="/static/js/main.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
