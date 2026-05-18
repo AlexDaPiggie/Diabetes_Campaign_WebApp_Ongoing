@@ -1,19 +1,195 @@
-/* ── Reveal animations (triggered by Intersection Observer) ── */
+/* Page-load and ambient motion */
+.motion-nav {
+  transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.motion-logo,
+.motion-shimmer,
+.motion-image,
+.motion-badge,
+.motion-stripe {
+  position: relative;
+  overflow: hidden;
+}
+
+.motion-logo::after,
+.motion-shimmer::before,
+.motion-stripe::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.motion-logo::after,
+.motion-shimmer::before {
+  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.28) 45%, transparent 70%);
+  transform: translateX(-120%);
+  animation: motionShimmer 4.8s ease-in-out infinite;
+}
+
+.motion-shimmer {
+  isolation: isolate;
+}
+
+.motion-shimmer > * {
+  position: relative;
+  z-index: 1;
+}
+
+.motion-welcome::after,
+.motion-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.motion-welcome {
+  background: linear-gradient(90deg, #3498db 0%, #65b8e8 48%, #a2d5f2 100%);
+  isolation: isolate;
+}
+
+.motion-welcome-sweep::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(90deg, #1d5fad 0%, #3498db 48%, #a2d5f2 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: motionWelcomeSweep 920ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+}
+
+.motion-welcome::after {
+  z-index: 2;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.18) 48%, transparent 70%);
+  transform: translateX(-100%);
+  animation: motionWideSweep 5.8s ease-in-out 1.05s infinite;
+}
+
+.motion-welcome-glow {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.motion-welcome-content {
+  z-index: 3;
+}
+
+.motion-welcome-title,
+.motion-welcome-divider,
+.motion-welcome-copy {
+  opacity: 0;
+}
+
+.motion-welcome-title {
+  animation: motionEnter 720ms cubic-bezier(0.16, 1, 0.3, 1) 960ms both;
+}
+
+.motion-welcome-divider {
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: motionDividerReveal 620ms cubic-bezier(0.16, 1, 0.3, 1) 1.42s both;
+}
+
+.motion-welcome-copy {
+  animation: motionEnter 760ms cubic-bezier(0.16, 1, 0.3, 1) 1.78s both;
+}
+
+.motion-hero::before {
+  background:
+    linear-gradient(180deg, rgba(126, 200, 227, 0.12), transparent 38%),
+    radial-gradient(ellipse at 75% 18%, rgba(29, 95, 173, 0.10), transparent 42%);
+}
+
+.motion-load {
+  animation: motionEnter 780ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.motion-load[data-load-delay='0'] { animation-delay: 0ms !important; }
+.motion-load[data-load-delay='80'] { animation-delay: 80ms !important; }
+.motion-load[data-load-delay='120'] { animation-delay: 120ms !important; }
+.motion-load[data-load-delay='160'] { animation-delay: 160ms !important; }
+.motion-load[data-load-delay='240'] { animation-delay: 240ms !important; }
+.motion-load[data-load-delay='260'] { animation-delay: 260ms !important; }
+.motion-load[data-load-delay='320'] { animation-delay: 320ms !important; }
+.motion-load[data-load-delay='400'] { animation-delay: 400ms !important; }
+
+.motion-float {
+  animation: motionFloat 7s ease-in-out infinite;
+}
+
+.motion-float-delayed {
+  animation: motionFloat 7s ease-in-out 800ms infinite;
+}
+
+.motion-image {
+  box-shadow: 0 18px 55px rgba(15, 61, 122, 0.12);
+  transform: translateZ(0);
+}
+
+.motion-image img {
+  will-change: transform;
+}
+
+.motion-badge {
+  box-shadow: 0 16px 45px rgba(15, 61, 122, 0.16);
+}
+
+.motion-stat {
+  text-shadow: 0 10px 30px rgba(29, 95, 173, 0.12);
+}
+
+.motion-stripe::after {
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.42) 50%, transparent 100%);
+  transform: translateX(-100%);
+  animation: motionStripe 5.5s ease-in-out infinite;
+}
+
+/* Reveal animations triggered by Intersection Observer */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: blur(8px);
+  transform: translateY(26px) scale(0.985);
+  transition:
+    opacity 780ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 780ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 780ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, filter, transform;
+}
+
+.reveal-image {
+  transform: translateY(30px) scale(0.97);
+  transition-duration: 940ms;
 }
 
 .reveal.revealed {
   opacity: 1;
+  filter: blur(0);
   transform: translateY(0);
 }
 
-/* Stagger delay helpers — set inline via style="transition-delay: 0.Xs" */
+.reveal-image.revealed {
+  transform: translateY(0) scale(1);
+}
 
-/* ── Reversed section direction override ── */
+.motion-list li {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.motion-list.revealed li {
+  animation: motionListItem 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.motion-list.revealed li:nth-child(1) { animation-delay: 40ms; }
+.motion-list.revealed li:nth-child(2) { animation-delay: 90ms; }
+.motion-list.revealed li:nth-child(3) { animation-delay: 140ms; }
+.motion-list.revealed li:nth-child(4) { animation-delay: 190ms; }
+.motion-list.revealed li:nth-child(5) { animation-delay: 240ms; }
+
+/* Reversed section direction override */
 .direction-rtl {
   direction: rtl;
 }
@@ -22,7 +198,7 @@
   direction: ltr;
 }
 
-/* ── Image lazy-load fade transition ── */
+/* Image lazy-load fade transition */
 img.lazy {
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -32,10 +208,11 @@ img.lazy.loaded {
   opacity: 1;
 }
 
-/* ── Hover lift for cards ── */
+/* Hover lift for cards */
 .hover-lift {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hover-lift:hover {
@@ -43,45 +220,46 @@ img.lazy.loaded {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* ── Nav scroll state ── */
+/* Nav scroll state */
 .nav-scrolled {
-  border-bottom-color: rgba(30, 42, 64, 0.8) !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  background: rgba(250, 252, 255, 0.92) !important;
+  border-bottom-color: rgba(197, 223, 240, 0.9) !important;
+  box-shadow: 0 12px 35px rgba(15, 61, 122, 0.08);
 }
 
-/* ── Custom scrollbar (WebKit) ── */
+/* Custom scrollbar (WebKit) */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #080c14;
+  background: #eef7ff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e2a40;
+  background: #8fafc8;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #5e7fa0;
 }
 
-/* ── Selection color ── */
+/* Selection color */
 ::selection {
-  background: rgba(59, 130, 246, 0.25);
-  color: #f1f5f9;
+  background: rgba(29, 95, 173, 0.22);
+  color: #0f2a4a;
 }
 
-/* ── Focus ring ── */
+/* Focus ring */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline: 2px solid rgba(29, 95, 173, 0.5);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* ── Smooth link underline ── */
+/* Smooth link underline */
 .link-underline {
   position: relative;
 }
@@ -101,12 +279,124 @@ button:focus-visible {
   width: 100%;
 }
 
-/* ── Reduced motion ── */
+@keyframes motionEnter {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(24px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes motionWelcomeSweep {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes motionDividerReveal {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes motionFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes motionShimmer {
+  0%, 58% {
+    transform: translateX(-120%);
+  }
+  78%, 100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes motionWideSweep {
+  0%, 62% {
+    transform: translateX(-100%);
+  }
+  88%, 100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes motionStripe {
+  0%, 56% {
+    transform: translateX(-100%);
+  }
+  78%, 100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes motionListItem {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  .motion-load,
+  .motion-float,
+  .motion-float-delayed,
+  .motion-welcome-sweep::before,
+  .motion-welcome-title,
+  .motion-welcome-divider,
+  .motion-welcome-copy,
+  .motion-logo::after,
+  .motion-shimmer::before,
+  .motion-stripe::after,
+  .motion-welcome::after {
+    animation: none !important;
+  }
+
+  .motion-load,
+  .motion-welcome-title,
+  .motion-welcome-divider,
+  .motion-welcome-copy,
   .reveal {
     opacity: 1;
+    filter: none;
     transform: none;
     transition: none;
+  }
+
+  .motion-welcome-sweep::before {
+    transform: scaleX(1);
+  }
+
+  .motion-list li {
+    opacity: 1;
+    transform: none;
   }
 
   *,

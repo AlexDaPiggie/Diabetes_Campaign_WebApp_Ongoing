@@ -102,7 +102,7 @@
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
       
-      element.textContent = Math.floor(progress * target).toLocaleString();
+      element.textContent = Math.floor(progress * target).toLocaleString(j);
 
       if (progress < 1) {
         requestAnimationFrame(animationStep);
