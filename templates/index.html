@@ -83,12 +83,15 @@
         <div class="flex flex-wrap gap-8 lg:gap-12 pt-6 border-t border-border animate-fade-up" style="animation-delay: 0.3s">
           {% for stat in hero.stats %}
           <div>
-            <div class="font-display text-4xl font-medium text-ink tracking-tight">{{ stat.number }}</div>
+            <div
+              class="font-display text-4xl font-medium text-ink tracking-tight animate-number"
+              data-target-number="{{ stat.number }}"
+            >0</div>
             <div class="text-sm text-ink-muted mt-1.5 max-w-[140px] leading-snug">{{ stat.label }}</div>
           </div>
           {% endfor %}
         </div>
-      </div>
+        </div>
 
       <!-- Image -->
       <div class="relative animate-scale-in" style="animation-delay: 0.2s">

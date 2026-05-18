@@ -83,3 +83,48 @@
     });
   });
 })();
+
+/* ── Number animation on scroll ── */
+(function () {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const animateNumber = (element) => {
+    if (prefersReducedMotion) {
+      element.textContent = parseInt(element.dataset.targetNumber, 10).toLocaleString();
+      return;
+    }
+
+    const target = parseInt(element.dataset.targetNumber, 10);
+    const duration = 500; // 0.8 seconds
+    let startTime = null;
+
+    const animationStep = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      element.textContent = Math.floor(progress * target).toLocaleString();
+
+      if (progress < 1) {
+        requestAnimationFrame(animationStep);
+      }
+    };
+
+    requestAnimationFrame(animationStep);
+  };
+
+  const numberObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateNumber(entry.target);
+          numberObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 } // Trigger when 50% of the element is visible
+  );
+
+  document.querySelectorAll('.animate-number').forEach((el) => {
+    numberObserver.observe(el);
+  });
+})();
