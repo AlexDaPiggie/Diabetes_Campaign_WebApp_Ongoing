@@ -78,14 +78,18 @@
       },
     }
   </script>
-  <link rel="stylesheet" href="/static/css/styles.css?v=welcome-sweep-2" />
+  <link rel="stylesheet" href="/static/css/styles.css?v=scroll-progress-2" />
   {% block head %}{% endblock %}
 </head>
 <body class="bg-canvas text-ink font-ui antialiased">
 
   {% block body %}{% endblock %}
 
-  <script src="/static/js/main.js"></script>
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar"></div>
+  </div>
+
+  <script src="/static/js/main.js?v=scroll-progress-1"></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

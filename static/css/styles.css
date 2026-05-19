@@ -1,4 +1,9 @@
 /* Page-load and ambient motion */
+html,
+body {
+  overflow-x: hidden;
+}
+
 .motion-nav {
   transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
@@ -12,8 +17,14 @@
   overflow: hidden;
 }
 
+.motion-stripe {
+  height: 8px;
+  background: #fafcff;
+}
+
 .motion-logo::after,
 .motion-shimmer::before,
+.motion-stripe::before,
 .motion-stripe::after {
   content: '';
   position: absolute;
@@ -84,17 +95,17 @@
 }
 
 .motion-welcome-title {
-  animation: motionEnter 720ms cubic-bezier(0.16, 1, 0.3, 1) 960ms both;
+  animation: motionEnter 520ms cubic-bezier(0.16, 1, 0.3, 1) 420ms both;
 }
 
 .motion-welcome-divider {
   transform: scaleX(0);
   transform-origin: center;
-  animation: motionDividerReveal 620ms cubic-bezier(0.16, 1, 0.3, 1) 1.42s both;
+  animation: motionDividerReveal 420ms cubic-bezier(0.16, 1, 0.3, 1) 760ms both;
 }
 
 .motion-welcome-copy {
-  animation: motionEnter 760ms cubic-bezier(0.16, 1, 0.3, 1) 1.78s both;
+  animation: motionEnter 560ms cubic-bezier(0.16, 1, 0.3, 1) 1.02s both;
 }
 
 .motion-hero::before {
@@ -141,10 +152,37 @@
   text-shadow: 0 10px 30px rgba(29, 95, 173, 0.12);
 }
 
+.motion-stripe::before {
+  background: linear-gradient(90deg, #3498db 0%, #65b8e8 48%, #a2d5f2 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: motionStripeReveal 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 .motion-stripe::after {
   background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.42) 50%, transparent 100%);
   transform: translateX(-100%);
-  animation: motionStripe 5.5s ease-in-out infinite;
+  animation: motionStripe 1.35s ease-in-out infinite;
+}
+
+.scroll-progress {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  height: 14px;
+  z-index: 60;
+  pointer-events: none;
+  background: #eef7ff;
+  box-shadow: 0 -1px 0 rgba(15, 61, 122, 0.08);
+}
+
+.scroll-progress__bar {
+  width: 100%;
+  height: 100%;
+  background: #8fafc8;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 80ms linear;
 }
 
 /* Reveal animations triggered by Intersection Observer */
@@ -230,6 +268,11 @@ img.lazy.loaded {
 /* Custom scrollbar (WebKit) */
 ::-webkit-scrollbar {
   width: 8px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 0;
+  display: none;
 }
 
 ::-webkit-scrollbar-track {
@@ -348,6 +391,15 @@ button:focus-visible {
   }
 }
 
+@keyframes motionStripeReveal {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 @keyframes motionListItem {
   0% {
     opacity: 0;
@@ -374,6 +426,7 @@ button:focus-visible {
   .motion-welcome-copy,
   .motion-logo::after,
   .motion-shimmer::before,
+  .motion-stripe::before,
   .motion-stripe::after,
   .motion-welcome::after {
     animation: none !important;
@@ -391,6 +444,10 @@ button:focus-visible {
   }
 
   .motion-welcome-sweep::before {
+    transform: scaleX(1);
+  }
+
+  .motion-stripe::before {
     transform: scaleX(1);
   }
 

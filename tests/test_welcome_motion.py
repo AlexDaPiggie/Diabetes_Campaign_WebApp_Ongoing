@@ -39,3 +39,40 @@ class WelcomeMotionTests(unittest.TestCase):
 
         self.assertNotIn("background: #fafcff", sweep_css)
         self.assertIn("background: linear-gradient(90deg, #1d5fad 0%, #3498db 48%, #a2d5f2 100%)", sweep_css)
+
+    def test_section_separators_use_welcome_gradient_and_fast_sweep(self):
+        template = (ROOT / "templates" / "index.html").read_text(encoding="utf-8")
+        css = (ROOT / "static" / "css" / "styles.css").read_text(encoding="utf-8")
+
+        welcome_to_hero = template[
+            template.index("</section>"):template.index('<section class="motion-hero')
+        ]
+        self.assertNotIn("motion-stripe", welcome_to_hero)
+
+        sections_loop_start = template.index("{% for section in sections %}")
+        sections_loop_end = template.index("{% endfor %}\n\n<!--", sections_loop_start)
+        sections_loop = template[sections_loop_start:sections_loop_end]
+        self.assertIn("motion-stripe", sections_loop)
+        self.assertIn("{% if not loop.last %}", sections_loop)
+        self.assertIn("background: linear-gradient(90deg, #3498db 0%, #65b8e8 48%, #a2d5f2 100%)", css)
+        self.assertIn("animation: motionStripe 1.35s ease-in-out infinite", css)
+
+    def test_section_separators_reveal_from_white_background(self):
+        css = (ROOT / "static" / "css" / "styles.css").read_text(encoding="utf-8")
+
+        stripe_start = css.index(".motion-stripe {")
+        stripe_end = css.index(".motion-logo::after", stripe_start)
+        stripe_css = css[stripe_start:stripe_end]
+        reveal_start = css.index(".motion-stripe::before {")
+        reveal_end = css.index(".motion-stripe::after {", reveal_start)
+        reveal_css = css[reveal_start:reveal_end]
+
+        self.assertIn("background: #fafcff", stripe_css)
+        self.assertIn(".motion-stripe::before", css)
+        self.assertIn("background: linear-gradient(90deg, #3498db 0%, #65b8e8 48%, #a2d5f2 100%)", reveal_css)
+        self.assertIn("animation: motionStripeReveal 420ms cubic-bezier(0.16, 1, 0.3, 1) both", reveal_css)
+
+        reduced_motion_start = css.index("@media (prefers-reduced-motion: reduce)")
+        reduced_motion_css = css[reduced_motion_start:]
+        self.assertIn(".motion-stripe::before", reduced_motion_css)
+        self.assertIn("transform: scaleX(1)", reduced_motion_css)

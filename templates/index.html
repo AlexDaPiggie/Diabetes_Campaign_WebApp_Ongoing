@@ -130,7 +130,7 @@
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center {% if section.reversed %}direction-rtl{% endif %}">
 
       <!-- Image -->
-      <div class="{% if section.reversed %}lg:order-2{% endif %} reveal reveal-image" data-reveal-delay="0">
+      <div class="reveal reveal-image" data-reveal-delay="0">
         <div class="motion-image rounded-2xl overflow-hidden border border-border/50 shadow-card">
           <img
             data-src="{{ section.image }}"
@@ -142,7 +142,7 @@
       </div>
 
       <!-- Text -->
-      <div class="{% if section.reversed %}lg:order-1{% endif %}">
+      <div>
         <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent-bright mb-4 reveal" data-reveal-delay="80">
           <span class="w-4 h-0.5 bg-accent rounded-full"></span>
           {{ section.eyebrow }}
@@ -172,6 +172,9 @@
     </div>
   </div>
 </section>
+{% if not loop.last %}
+<div class="motion-stripe h-1.5 bg-gradient-to-r from-accent via-accent-bright to-accent/30"></div>
+{% endif %}
 {% endfor %}
 
 <!-- ═══════════════ GRADIENT STRIPE ═══════════════ -->
