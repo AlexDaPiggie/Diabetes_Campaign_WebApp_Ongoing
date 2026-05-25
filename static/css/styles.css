@@ -4,6 +4,10 @@ body {
   overflow-x: hidden;
 }
 
+:root {
+  --motion-repeat-interval: 2.0s;
+}
+
 .motion-nav {
   transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
@@ -36,7 +40,14 @@ body {
 .motion-shimmer::before {
   background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.28) 45%, transparent 70%);
   transform: translateX(-120%);
+}
+
+.motion-logo::after {
   animation: motionShimmer 4.8s ease-in-out infinite;
+}
+
+.motion-shimmer::before {
+  animation: motionShimmer var(--motion-repeat-interval) ease-in-out infinite;
 }
 
 .motion-shimmer {
@@ -76,7 +87,7 @@ body {
   z-index: 2;
   background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.18) 48%, transparent 70%);
   transform: translateX(-100%);
-  animation: motionWideSweep 5.8s ease-in-out 1.05s infinite;
+  animation: motionWideSweep var(--motion-repeat-interval) ease-in-out 1.05s infinite;
 }
 
 .motion-welcome-glow {

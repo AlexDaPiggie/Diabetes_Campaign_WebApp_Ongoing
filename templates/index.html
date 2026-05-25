@@ -150,20 +150,20 @@
         <h2 class="font-display text-4xl sm:text-5xl font-medium text-ink leading-[1.12] tracking-tight mb-5 reveal" style="transition-delay: 0.1s" data-reveal-delay="140">
           {{ section.title }}
         </h2>
-        <p class="text-base text-ink-dim leading-relaxed mb-6 reveal" style="transition-delay: 0.15s" data-reveal-delay="200">
+        <p class="text-lg text-ink-dim leading-relaxed mb-6 reveal" style="transition-delay: 0.15s" data-reveal-delay="200">
           {{ section.body }}
         </p>
 
         <ul class="motion-list space-y-3 mb-8 reveal" style="transition-delay: 0.2s" data-reveal-delay="260">
           {% for item in section.bullet_items %}
-          <li class="flex items-start gap-3 text-sm text-ink-dim leading-relaxed">
+          <li class="flex items-start gap-3 text-lg text-ink-dim leading-relaxed">
             <span class="w-2 h-2 rounded-full bg-accent shrink-0 mt-1.5"></span>
             {{ item }}
           </li>
           {% endfor %}
         </ul>
 
-        <a href="{{ section.link.href }}" class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-bright hover:gap-2.5 transition-all duration-200 reveal" style="transition-delay: 0.25s" data-reveal-delay="320">
+        <a href="{{ section.link.href }}" class="inline-flex items-center gap-1.5 text-lg font-medium text-accent-bright hover:gap-2.5 transition-all duration-200 reveal" style="transition-delay: 0.25s" data-reveal-delay="320">
           {{ section.link.label }}
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         </a>

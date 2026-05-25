@@ -40,6 +40,13 @@ class WelcomeMotionTests(unittest.TestCase):
         self.assertNotIn("background: #fafcff", sweep_css)
         self.assertIn("background: linear-gradient(90deg, #1d5fad 0%, #3498db 48%, #a2d5f2 100%)", sweep_css)
 
+    def test_welcome_and_cta_shimmer_share_faster_repeat_rate(self):
+        css = (ROOT / "static" / "css" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn("--motion-repeat-interval: 3.2s;", css)
+        self.assertIn("animation: motionShimmer var(--motion-repeat-interval) ease-in-out infinite;", css)
+        self.assertIn("animation: motionWideSweep var(--motion-repeat-interval) ease-in-out 1.05s infinite;", css)
+
     def test_section_separators_use_welcome_gradient_and_fast_sweep(self):
         template = (ROOT / "templates" / "index.html").read_text(encoding="utf-8")
         css = (ROOT / "static" / "css" / "styles.css").read_text(encoding="utf-8")
