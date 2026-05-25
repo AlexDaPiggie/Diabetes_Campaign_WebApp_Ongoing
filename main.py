@@ -21,4 +21,4 @@ def load_content() -> dict:
 @app.get("/")
 def index(request: Request):
     data = load_content()
-    return templates.TemplateResponse("index.html", {"request": request, **data})
+    return templates.TemplateResponse(request, "index.html", data)

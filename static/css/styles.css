@@ -5,7 +5,7 @@ body {
 }
 
 :root {
-  --motion-repeat-interval: 2.0s;
+  --motion-repeat-interval: 3.2s;
 }
 
 .motion-nav {
@@ -123,6 +123,26 @@ body {
   background:
     linear-gradient(180deg, rgba(126, 200, 227, 0.12), transparent 38%),
     radial-gradient(ellipse at 75% 18%, rgba(29, 95, 173, 0.10), transparent 42%);
+}
+
+/* --- Personal Story: High-Contrast Editorial --- */
+.personal-story--editorial {
+  background-color: #FCFAF7;
+  color: #0f2a4a;
+}
+
+.personal-story__accent-rule {
+  height: auto;
+  min-height: 80px;
+}
+
+.personal-story__paragraph {
+  text-wrap: pretty;
+  transition-duration: 1200ms !important;
+}
+
+.personal-story--editorial::before {
+  display: none;
 }
 
 .personal-story {

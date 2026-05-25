@@ -52,6 +52,33 @@
   </div>
 </section>
 
+<!-- PERSONAL STORY (EDITORIAL) -->
+<section class="personal-story--editorial relative py-24 lg:py-32 overflow-hidden" aria-label="Personal story">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="personal-story__container max-w-2xl mx-auto">
+
+      <!-- Intro Hook with Vertical Accent Rule -->
+      <div class="flex gap-6 mb-12 reveal" data-reveal-delay="100">
+        <div class="personal-story__accent-rule w-px bg-ink/20 shrink-0"></div>
+        <h2 class="personal-story__intro font-display text-4xl sm:text-5xl font-medium text-ink leading-tight tracking-tight">
+          A routine visit changed everything.
+        </h2>
+      </div>
+
+      <!-- Narrative Paragraphs with Staggered Fade -->
+      <div class="personal-story__body space-y-10">
+        {% for paragraph in personal_story.paragraphs %}
+        <p class="personal-story__paragraph reveal text-xl text-ink leading-relaxed"
+           style="transition-delay: {{ 0.2 + (loop.index0 * 0.15) }}s">
+          {{ paragraph }}
+        </p>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════ HERO ═══════════════ -->
 <section class="motion-hero relative py-20 lg:py-28 overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
