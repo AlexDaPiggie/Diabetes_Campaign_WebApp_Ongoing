@@ -76,7 +76,13 @@
 
       <!-- Right Column: Iceberg Diagram -->
       <div class="personal-story__stats reveal" data-reveal-delay="300">
-        <svg class="iceberg-svg" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg">
+        {% set layers = personal_story.iceberg.layers %}
+        {% set tip = layers[0] %}
+        {% set middle = layers[1] %}
+        {% set base = layers[2] %}
+        <svg class="iceberg-svg" viewBox="0 0 320 400" role="img" aria-labelledby="iceberg-title iceberg-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="iceberg-title">US diabetes iceberg statistics</title>
+          <desc id="iceberg-desc">Diagnosed, undiagnosed, and prediabetes adult statistics from CDC and NCHS data.</desc>
           <!-- Waterline -->
           <rect y="120" width="320" height="280" fill="rgba(255,255,255,0.05)" />
 
@@ -85,18 +91,18 @@
           <path d="M160 20 L220 120 L160 140 L100 120 Z" fill="#ffffff" />
 
           <!-- Tip Layer -->
-          <text x="160" y="70" text-anchor="middle" class="iceberg-label">Diagnosed</text>
-          <text x="160" y="95" text-anchor="middle" class="iceberg-stat">29.4M</text>
+          <text x="160" y="70" text-anchor="middle" class="iceberg-label">{{ tip.label.replace(' Adults', '') }}</text>
+          <text x="160" y="95" text-anchor="middle" class="iceberg-stat">{{ tip.stat.replace(' Million', 'M') }}</text>
 
           <!-- Middle Layer (Submerged) -->
-          <text x="160" y="200" text-anchor="middle" class="iceberg-label iceberg-label--submerged">Undiagnosed</text>
-          <text x="160" y="225" text-anchor="middle" class="iceberg-stat iceberg-stat--submerged">8.7M</text>
-          <text x="160" y="245" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">Risk triples after 40</text>
+          <text x="160" y="200" text-anchor="middle" class="iceberg-label iceberg-label--submerged">{{ middle.label.split(' (')[0] }}</text>
+          <text x="160" y="225" text-anchor="middle" class="iceberg-stat iceberg-stat--submerged">{{ middle.stat.replace(' Million', 'M') }}</text>
+          <text x="160" y="245" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">{{ middle.age_callout }}</text>
 
           <!-- Base Layer -->
-          <text x="160" y="320" text-anchor="middle" class="iceberg-label iceberg-label--submerged">Prediabetes</text>
-          <text x="160" y="345" text-anchor="middle" class="iceberg-stat iceberg-stat--submerged">97.6M</text>
-          <text x="160" y="365" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">8 in 10 don't know</text>
+          <text x="160" y="320" text-anchor="middle" class="iceberg-label iceberg-label--submerged">{{ base.label.split(' (')[0] }}</text>
+          <text x="160" y="345" text-anchor="middle" class="iceberg-stat iceberg-stat--submerged">{{ base.stat.replace(' Million', 'M') }}</text>
+          <text x="160" y="365" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">{{ base.label.replace('Prediabetes (', '').replace(')', '') }}</text>
         </svg>
       </div>
 
