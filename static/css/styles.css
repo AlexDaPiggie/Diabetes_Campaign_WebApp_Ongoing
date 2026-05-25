@@ -125,6 +125,43 @@ body {
     radial-gradient(ellipse at 75% 18%, rgba(29, 95, 173, 0.10), transparent 42%);
 }
 
+.personal-story {
+  background:
+    linear-gradient(180deg, #fafcff 0%, #eef7ff 52%, #fafcff 100%);
+  isolation: isolate;
+}
+
+.personal-story::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 15%, rgba(29, 95, 173, 0.10), transparent 42%),
+    linear-gradient(90deg, rgba(126, 200, 227, 0.10), transparent 65%);
+  z-index: 0;
+}
+
+.personal-story__panel {
+  isolation: isolate;
+  background:
+    linear-gradient(135deg, rgba(240, 248, 255, 0.94), rgba(232, 244, 255, 0.82));
+  box-shadow: 0 18px 55px rgba(15, 61, 122, 0.10);
+}
+
+.personal-story__quote-mark {
+  top: 0.1rem;
+  left: 1.2rem;
+  color: rgba(29, 95, 173, 0.15);
+  font-size: 7rem;
+  line-height: 1;
+  z-index: 0;
+}
+
+.personal-story__copy {
+  z-index: 1;
+}
+
 .motion-load {
   animation: motionEnter 780ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -439,7 +476,8 @@ button:focus-visible {
   .motion-shimmer::before,
   .motion-stripe::before,
   .motion-stripe::after,
-  .motion-welcome::after {
+  .motion-welcome::after,
+  .personal-story::before {
     animation: none !important;
   }
 
