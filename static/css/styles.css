@@ -125,6 +125,26 @@ body {
     radial-gradient(ellipse at 75% 18%, rgba(29, 95, 173, 0.10), transparent 42%);
 }
 
+/* --- Personal Story: High-Contrast Editorial --- */
+.personal-story--editorial {
+  background-color: #FCFAF7;
+  color: #0f2a4a;
+}
+
+.personal-story__accent-rule {
+  height: auto;
+  min-height: 80px;
+}
+
+.personal-story__paragraph {
+  text-wrap: pretty;
+  transition-duration: 1200ms !important;
+}
+
+.personal-story--editorial::before {
+  display: none;
+}
+
 .personal-story {
   background:
     linear-gradient(180deg, #fafcff 0%, #eef7ff 52%, #fafcff 100%);
