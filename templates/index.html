@@ -55,23 +55,56 @@
 <!-- PERSONAL STORY -->
 <section class="personal-story relative py-24 lg:py-32 overflow-hidden" aria-label="Personal story">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto text-center">
+    <div class="personal-story__grid">
 
-      <!-- Heading -->
-      <h2 class="font-display text-5xl sm:text-6xl font-bold text-ink leading-tight tracking-tight mb-16 reveal" data-reveal-delay="100">
-        A routine visit changed everything.
-      </h2>
-
-      <!-- Narrative Paragraphs with Staggered Fade -->
-      <div class="personal-story__body space-y-12 max-w-3xl mx-auto">
-        {% for paragraph in personal_story.paragraphs %}
-        <p class="personal-story__paragraph reveal text-xl text-ink leading-relaxed"
-           style="transition-delay: {{ 0.2 + (loop.index0 * 0.15) }}s">
-          {{ paragraph }}
-        </p>
-        {% endfor %}
+      <!-- Left Column: Narrative -->
+      <div class="reveal" data-reveal-delay="100">
+        <h2 class="font-display text-5xl sm:text-6xl font-bold text-ink leading-tight tracking-tight mb-12">
+          Before it's too late
+        </h2>
+        <div class="personal-story__panel p-8 sm:p-12 rounded-2xl relative overflow-hidden">
+          <span class="personal-story__quote-mark absolute">“</span>
+          <div class="personal-story__body space-y-8 relative z-10">
+            {% for paragraph in personal_story.paragraphs %}
+            <p class="personal-story__paragraph text-xl text-ink leading-relaxed">
+              {{ paragraph }}
+            </p>
+            {% endfor %}
+          </div>
+        </div>
       </div>
 
+      <!-- Right Column: Iceberg Diagram -->
+      <div class="personal-story__stats reveal" data-reveal-delay="300">
+        <svg class="iceberg-svg" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Waterline -->
+          <rect y="120" width="320" height="280" fill="rgba(255,255,255,0.05)" />
+
+          <!-- Iceberg Shape -->
+          <path d="M160 20 L220 120 L260 280 L160 380 L60 280 L100 120 Z" fill="#ffffff" opacity="0.9" />
+          <path d="M160 20 L220 120 L160 140 L100 120 Z" fill="#ffffff" />
+
+          <!-- Tip Layer -->
+          <text x="160" y="70" text-anchor="middle" class="iceberg-label">Diagnosed</text>
+          <text x="160" y="95" text-anchor="middle" class="iceberg-stat">29.4M</text>
+
+          <!-- Middle Layer (Submerged) -->
+          <text x="160" y="200" text-anchor="middle" class="iceberg-label iceberg-label--submerged">Undiagnosed</text>
+          <text x="160" y="225" text-anchor="middle" class="iceberg-stat iceberg-stat--submerged">8.7M</text>
+          <text x="160" y="245" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">Risk triples after 40</text>
+
+          <!-- Base Layer -->
+          <text x="160" y="320" text-anchor="middle" class="iceberg-label iceberg-label--submerged">Prediabetes</text>
+          <text x="160" y="345" text-anchor="middle" class="iceberg-stat iceberg-stat--submerged">97.6M</text>
+          <text x="160" y="365" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">8 in 10 don't know</text>
+        </svg>
+      </div>
+
+    </div>
+
+    <!-- Source Attribution -->
+    <div class="personal-story__source reveal" data-reveal-delay="400">
+      {{ personal_story.iceberg.source }}
     </div>
   </div>
 </section>
