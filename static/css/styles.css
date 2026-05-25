@@ -5,7 +5,7 @@ body {
 }
 
 :root {
-  --motion-repeat-interval: 2.0s;
+  --motion-repeat-interval: 3.2s;
 }
 
 .motion-nav {
