@@ -70,7 +70,7 @@ body {
 }
 
 .motion-welcome {
-  background: linear-gradient(90deg, #3498db 0%, #65b8e8 48%, #a2d5f2 100%);
+  background: linear-gradient(90deg, #8dc5de 40%, #65b8e8 48%, #a2d5f2 100%);
   isolation: isolate;
 }
 
@@ -79,7 +79,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(90deg, #1d5fad 0%, #3498db 48%, #a2d5f2 100%);
+  background: linear-gradient(90deg, #8dc5de 40%, #3498db 48%, #a2d5f2 100%);
   transform: scaleX(0);
   transform-origin: left center;
   animation: motionWelcomeSweep 750ms cubic-bezier(0.16, 1, 0.3, 1) 50ms both;
@@ -94,6 +94,23 @@ body {
 
 .motion-welcome-glow {
   z-index: 1;
+  pointer-events: none;
+}
+
+.welcome-image-layer {
+  position: absolute;
+  top: calc(10% + 32px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80%;
+  max-width: calc(100% - 24px);
+  max-height: calc(100% - 24px);
+  border-radius: 24px;
+  background: url('../images/Welcome_Background.png') center/cover no-repeat;
+  z-index: 2;
+  opacity: 0;
+  animation: motionFadeInImage 800ms ease-out 850ms both;
   pointer-events: none;
 }
 
@@ -330,6 +347,16 @@ body {
   .personal-story__source {
     max-width: 320px;
   font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .welcome-image-layer {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    height: 85vh;
+    border-radius: 16px;
   }
 }
 
@@ -628,6 +655,11 @@ button:focus-visible {
   }
 }
 
+@keyframes motionFadeInImage {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 @keyframes motionListItem {
   0% {
     opacity: 0;
@@ -653,6 +685,7 @@ button:focus-visible {
   .motion-welcome-title,
   .motion-welcome-divider,
   .motion-welcome-copy,
+  .welcome-image-layer,
   .motion-logo::after,
   .motion-shimmer::before,
   .motion-stripe::before,
@@ -670,6 +703,7 @@ button:focus-visible {
   .motion-welcome-title,
   .motion-welcome-divider,
   .motion-welcome-copy,
+  .welcome-image-layer,
   .reveal {
     opacity: 1;
     filter: none;

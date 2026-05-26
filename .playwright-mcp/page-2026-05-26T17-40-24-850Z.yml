@@ -1,0 +1,290 @@
+- generic [active] [ref=e5]:
+  - navigation [ref=e6]:
+    - generic [ref=e8]:
+      - link "Diabetes Awareness Living Well Together" [ref=e9] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e11]
+        - generic [ref=e13]:
+          - generic [ref=e14]: Diabetes Awareness
+          - generic [ref=e15]: Living Well Together
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - link "Symptoms" [ref=e18] [cursor=pointer]:
+            - /url: "#symptoms"
+        - listitem [ref=e19]:
+          - link "Medications" [ref=e20] [cursor=pointer]:
+            - /url: "#medications"
+        - listitem [ref=e21]:
+          - link "Community" [ref=e22] [cursor=pointer]:
+            - /url: "#community"
+      - generic [ref=e23]:
+        - link "Find Support" [ref=e24] [cursor=pointer]:
+          - /url: "#community"
+        - link "Learn More" [ref=e25] [cursor=pointer]:
+          - /url: "#symptoms"
+  - generic [ref=e2]:
+    - heading "Welcome" [level=2] [ref=e3]
+    - paragraph [ref=e4]: Millions of people around the world live with diabetes. We're here to help you recognise the signs, understand your treatment options, and connect with a community that truly gets it.
+  - region "Personal story" [ref=e27]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - heading "It Could Be Anyone!" [level=2] [ref=e31]
+        - generic [ref=e33]:
+          - paragraph [ref=e34]: A few years ago, my dad walked into a hospital for a routine visit and walked out with a life-changing diagnosis - Severe Type 2 diabetes. The damage was already done. He was told to start insulin immediately, and most likely, he'd be on it for the result of his life.
+          - paragraph [ref=e35]: No dramatic warning signs. No moment where he thought, 'something is really wrong.' It crept up quietly, the way diabetes so often does, and by the time it showed up, it had already been building for years.
+      - generic [ref=e36]:
+        - 'img "Waffle chart showing diabetes statistics: 9% diagnosed, 3% undiagnosed, 35% in the warning zone, and 53% normal." [ref=e37]':
+          - generic [ref=e38]:
+            - img [ref=e39]
+            - img [ref=e41]
+            - img [ref=e43]
+            - img [ref=e45]
+            - img [ref=e47]
+            - img [ref=e49]
+            - img [ref=e51]
+            - img [ref=e53]
+            - img [ref=e55]
+            - img [ref=e57]
+            - img [ref=e59]
+            - img [ref=e61]
+            - img [ref=e63]
+            - img [ref=e65]
+            - img [ref=e67]
+            - img [ref=e69]
+            - img [ref=e71]
+            - img [ref=e73]
+            - img [ref=e75]
+            - img [ref=e77]
+            - img [ref=e79]
+            - img [ref=e81]
+            - img [ref=e83]
+            - img [ref=e85]
+            - img [ref=e87]
+            - img [ref=e89]
+            - img [ref=e91]
+            - img [ref=e93]
+            - img [ref=e95]
+            - img [ref=e97]
+            - img [ref=e99]
+            - img [ref=e101]
+            - img [ref=e103]
+            - img [ref=e105]
+            - img [ref=e107]
+            - img [ref=e109]
+            - img [ref=e111]
+            - img [ref=e113]
+            - img [ref=e115]
+            - img [ref=e117]
+            - img [ref=e119]
+            - img [ref=e121]
+            - img [ref=e123]
+            - img [ref=e125]
+            - img [ref=e127]
+            - img [ref=e129]
+            - img [ref=e131]
+            - img [ref=e133]
+            - img [ref=e135]
+            - img [ref=e137]
+            - img [ref=e139]
+            - img [ref=e141]
+            - img [ref=e143]
+            - img [ref=e145]
+            - img [ref=e147]
+            - img [ref=e149]
+            - img [ref=e151]
+            - img [ref=e153]
+            - img [ref=e155]
+            - img [ref=e157]
+            - img [ref=e159]
+            - img [ref=e161]
+            - img [ref=e163]
+            - img [ref=e165]
+            - img [ref=e167]
+            - img [ref=e169]
+            - img [ref=e171]
+            - img [ref=e173]
+            - img [ref=e175]
+            - img [ref=e177]
+            - img [ref=e179]
+            - img [ref=e181]
+            - img [ref=e183]
+            - img [ref=e185]
+            - img [ref=e187]
+            - img [ref=e189]
+            - img [ref=e191]
+            - img [ref=e193]
+            - img [ref=e195]
+            - img [ref=e197]
+            - img [ref=e199]
+            - img [ref=e201]
+            - img [ref=e203]
+            - img [ref=e205]
+            - img [ref=e207]
+            - img [ref=e209]
+            - img [ref=e211]
+            - img [ref=e213]
+            - img [ref=e215]
+            - img [ref=e217]
+            - img [ref=e219]
+            - img [ref=e221]
+            - img [ref=e223]
+            - img [ref=e225]
+            - img [ref=e227]
+            - img [ref=e229]
+            - img [ref=e231]
+            - img [ref=e233]
+            - img [ref=e235]
+            - img [ref=e237]
+        - link "US National Diabetes Statistics Report 2024" [ref=e239] [cursor=pointer]:
+          - /url: https://usdss.cdc.gov/diabetes/report.html
+        - generic [ref=e240]:
+          - generic [ref=e241]:
+            - img [ref=e242]
+            - generic [ref=e244]:
+              - generic [ref=e245]: "0"
+              - generic [ref=e246]: Have Diabetes
+          - generic [ref=e247]:
+            - img [ref=e248]
+            - generic [ref=e250]:
+              - generic [ref=e251]: "0"
+              - generic [ref=e252]: Are undiagnosed
+          - generic [ref=e253]:
+            - img [ref=e254]
+            - generic [ref=e256]:
+              - generic [ref=e257]: "0"
+              - generic [ref=e258]: Have prediabetes
+          - generic [ref=e259]:
+            - img [ref=e260]
+            - generic [ref=e262]:
+              - generic [ref=e263]: "0"
+              - generic [ref=e264]: Are Healthy
+        - generic [ref=e265]: Up to 52.1% adults over 65 have prediabetes.
+  - generic [ref=e268]:
+    - generic [ref=e269]:
+      - generic [ref=e270]: Diabetes Awareness
+      - heading "Understanding diabetes. Together." [level=1] [ref=e272]
+      - paragraph [ref=e273]: It is easier to fight diabetes when you understand it. At the end of the day, it is not just a matter of insulin. But also the lifestyle and genetics.
+      - generic [ref=e274]:
+        - link "Explore Symptoms" [ref=e275] [cursor=pointer]:
+          - /url: "#symptoms"
+        - link "Join the Community" [ref=e276] [cursor=pointer]:
+          - /url: "#community"
+      - generic [ref=e277]:
+        - generic [ref=e278]:
+          - generic [ref=e279]: "0"
+          - generic [ref=e280]: Adults living with diabetes worldwide
+        - generic [ref=e281]:
+          - generic [ref=e282]: "0"
+          - generic [ref=e283]: People go undiagnosed
+        - generic [ref=e284]:
+          - generic [ref=e285]: "0"
+          - generic [ref=e286]: Cases are Type 2 diabetes
+    - generic [ref=e287]:
+      - img "People living well with diabetes" [ref=e289]
+      - generic [ref=e290]:
+        - img [ref=e292]
+        - generic [ref=e295]:
+          - strong [ref=e296]: Early detection saves lives
+          - text: Know your symptoms today
+  - generic [ref=e300]:
+    - img "Patient in hospital corridor" [ref=e303]
+    - generic [ref=e304]:
+      - generic [ref=e305]: Symptoms
+      - heading "If you have any of these symptoms, visit a doctor." [level=2] [ref=e307]
+      - paragraph [ref=e308]: Diabetes can develop gradually and its early warning signs are often easy to dismiss. Recognising them early gives you the best chance of managing the condition effectively and avoiding serious complications.
+      - list [ref=e309]:
+        - listitem [ref=e310]: Excessive thirst and frequent urination
+        - listitem [ref=e312]: Unexplained weight loss or gain
+        - listitem [ref=e314]: Blurred vision and persistent fatigue
+        - listitem [ref=e316]: Slow-healing wounds or frequent infections
+        - listitem [ref=e318]: Tingling or numbness in hands and feet
+      - link "Learn more about symptoms" [ref=e320] [cursor=pointer]:
+        - /url: "#"
+        - text: Learn more about symptoms
+        - img [ref=e321]
+  - generic [ref=e326]:
+    - img "Diabetes medication and monitoring supplies" [ref=e329]
+    - generic [ref=e330]:
+      - generic [ref=e331]: Medications
+      - heading "Do you want to know more about your medication?" [level=2] [ref=e333]
+      - paragraph [ref=e334]: Managing diabetes often involves a combination of lifestyle changes and medication. Understanding what each treatment does — and how to use it safely — puts you firmly in control of your own health journey.
+      - list [ref=e335]:
+        - listitem [ref=e336]: "Insulin therapy: types, dosing, and delivery methods"
+        - listitem [ref=e338]: Oral medications and how they work
+        - listitem [ref=e340]: Continuous glucose monitoring (CGM) devices
+        - listitem [ref=e342]: Diet and exercise as first-line treatment
+        - listitem [ref=e344]: When and how to adjust your medication plan
+      - link "Explore medication guides" [ref=e346] [cursor=pointer]:
+        - /url: "#"
+        - text: Explore medication guides
+        - img [ref=e347]
+  - generic [ref=e352]:
+    - img "Diabetes community members showing CGM patches" [ref=e355]
+    - generic [ref=e356]:
+      - generic [ref=e357]: Community
+      - heading "Looking for a diabetes community?" [level=2] [ref=e359]
+      - paragraph [ref=e360]: You are not alone. Hundreds of thousands of people living with diabetes have found strength, advice, and friendship through shared experience. Our community is open to everyone — newly diagnosed or a long-time warrior.
+      - list [ref=e361]:
+        - listitem [ref=e362]: Connect with others who truly understand
+        - listitem [ref=e364]: Share your story and inspire someone else
+        - listitem [ref=e366]: Access peer-reviewed tips on daily management
+        - listitem [ref=e368]: Join local and online support groups
+        - listitem [ref=e370]: Participate in awareness events worldwide
+      - link "Join the community" [ref=e372] [cursor=pointer]:
+        - /url: "#"
+        - text: Join the community
+        - img [ref=e373]
+  - contentinfo [ref=e376]:
+    - generic [ref=e377]:
+      - generic [ref=e378]:
+        - generic [ref=e379]:
+          - generic [ref=e380]: Diabetes Awareness
+          - paragraph [ref=e381]: Empowering people living with diabetes with knowledge, community, and hope — one step at a time.
+        - generic [ref=e382]:
+          - generic [ref=e383]: Learn
+          - list [ref=e384]:
+            - listitem [ref=e385]:
+              - link "Symptoms" [ref=e386] [cursor=pointer]:
+                - /url: "#symptoms"
+            - listitem [ref=e387]:
+              - link "Medications" [ref=e388] [cursor=pointer]:
+                - /url: "#medications"
+            - listitem [ref=e389]:
+              - link "Type 1 Diabetes" [ref=e390] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e391]:
+              - link "Type 2 Diabetes" [ref=e392] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e393]:
+          - generic [ref=e394]: Support
+          - list [ref=e395]:
+            - listitem [ref=e396]:
+              - link "Community" [ref=e397] [cursor=pointer]:
+                - /url: "#community"
+            - listitem [ref=e398]:
+              - link "Find a Doctor" [ref=e399] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e400]:
+              - link "Mental Health" [ref=e401] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e402]:
+              - link "Helpline" [ref=e403] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e404]:
+          - generic [ref=e405]: About
+          - list [ref=e406]:
+            - listitem [ref=e407]:
+              - link "Our Mission" [ref=e408] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e409]:
+              - link "Research" [ref=e410] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e411]:
+              - link "Partners" [ref=e412] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e413]:
+              - link "Contact" [ref=e414] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=e415]:
+        - generic [ref=e416]: © 2026 Diabetes Awareness. All rights reserved.
+        - generic [ref=e417]: Made with care for the diabetes community.
