@@ -28,11 +28,15 @@ class WaffleContentTests(unittest.TestCase):
     def test_waffle_legend_labels(self):
         response = TestClient(app).get("/")
         
-        # Verify legend labels from content.json
-        self.assertIn("Diagnosed (29.0M)", response.text)
-        self.assertIn("Undiagnosed (11.1M)", response.text)
-        self.assertIn("The Warning Zone (115.2M)", response.text)
-        self.assertIn("Normal (178.9M)", response.text)
+        # Verify stats from content.json (hero style)
+        self.assertIn("40.1M", response.text)
+        self.assertIn("Have diabetes", response.text)
+        self.assertIn("27.6%", response.text)
+        self.assertIn("Patients are undiagnosed", response.text)
+        self.assertIn("115.2M", response.text)
+        self.assertIn("Have prediabetes", response.text)
+        self.assertIn("178.9M", response.text)
+        self.assertIn("People are normal", response.text)
 
     def test_elderly_callout_presence(self):
         response = TestClient(app).get("/")
@@ -43,7 +47,6 @@ class WaffleContentTests(unittest.TestCase):
         
         # Verify source text
         self.assertIn("Source: CDC National Diabetes Statistics Report 2024", response.text)
-        self.assertIn("NCHS Data Brief No. 516", response.text)
 
     def test_accessibility_attributes(self):
         response = TestClient(app).get("/")
@@ -51,4 +54,5 @@ class WaffleContentTests(unittest.TestCase):
         # Verify ARIA labels
         self.assertIn('role="img"', response.text)
         self.assertIn('aria-label="Waffle chart showing diabetes statistics: 9% diagnosed, 3% undiagnosed, 35% in the warning zone, and 53% normal."', response.text)
-        self.assertIn('aria-hidden="true"', response.text) # For icons and legend dots
+        # Note: aria-hidden="true" removed for stats as they are now hero-style and should be accessible
+

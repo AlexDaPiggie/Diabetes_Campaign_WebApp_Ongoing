@@ -205,7 +205,7 @@
   const numberObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !entry.target.closest('.personal-story')) {
           animateNumber(entry.target);
           numberObserver.unobserve(entry.target);
         }
@@ -267,5 +267,119 @@
     document.addEventListener('DOMContentLoaded', initWaffleScan);
   } else {
     initWaffleScan();
+  }
+})();
+
+/* ── Personal Story Sequenced Animation ── */
+(function () {
+  const section = document.querySelector('.personal-story');
+  if (!section) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const source = section.querySelector('.personal-story__source');
+  const callout = section.querySelector('.personal-story__callout');
+  const statNumbers = section.querySelectorAll('.personal-story__stats .motion-stat');
+  const statLabels = section.querySelectorAll('.personal-story__stats .font-ui');
+  const animateNumbers = section.querySelectorAll('.animate-number');
+
+  // Hide elements via JS so content is visible without JS
+  if (source) source.classList.add('ps-hidden');
+  if (callout) callout.classList.add('ps-hidden');
+  statNumbers.forEach(el => el.classList.add('ps-hidden'));
+  statLabels.forEach(el => el.classList.add('ps-hidden'));
+
+  if (prefersReducedMotion) {
+    [source, callout].forEach(el => { if (el) el.classList.remove('ps-hidden'); });
+    statNumbers.forEach(el => el.classList.remove('ps-hidden'));
+    statLabels.forEach(el => el.classList.remove('ps-hidden'));
+    animateNumbers.forEach(el => {
+      el.textContent = el.dataset.targetText || el.dataset.targetNumber || el.textContent;
+    });
+    return;
+  }
+
+  let animated = false;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting && !animated) {
+        animated = true;
+        runAnimation();
+        observer.unobserve(section);
+      }
+    },
+    { threshold: 0.2 }
+  );
+
+  observer.observe(section);
+
+  function runAnimation() {
+    // Phase 1: Source fade in (0–500ms)
+    if (source) source.classList.remove('ps-hidden');
+
+    // Phase 2: Stats group fade in (500–1000ms)
+    setTimeout(() => {
+      statNumbers.forEach(el => el.classList.remove('ps-hidden'));
+      statLabels.forEach(el => el.classList.remove('ps-hidden'));
+    }, 500);
+
+    // Phase 3: Synchronized number counting (1000–2500ms)
+    setTimeout(() => {
+      animateNumbersSync(animateNumbers, 350);
+    }, 1000);
+
+    // Phase 4: Callout fade in (1750–2250ms)
+    setTimeout(() => {
+      if (callout) callout.classList.remove('ps-hidden');
+    }, 1750);
+  }
+
+  function animateNumbersSync(elements, duration) {
+    const numberPattern = /^([^0-9]*)(\d[\d,]*(?:\.\d+)?)(.*)$/;
+
+    const targets = Array.from(elements).map(el => {
+      const raw = el.dataset.targetText || el.dataset.targetNumber || el.textContent;
+      const match = (raw || '').trim().match(numberPattern);
+      if (match) {
+        return {
+          el,
+          prefix: match[1],
+          value: parseFloat(match[2].replace(/,/g, '')),
+          suffix: match[3],
+        };
+      }
+      return { el, prefix: '', value: 0, suffix: '', raw };
+    });
+
+    const startTime = performance.now();
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      targets.forEach(t => {
+        if (t.raw) {
+          t.el.textContent = t.raw;
+          return;
+        }
+        if (progress >= 1) {
+          t.el.textContent = `${t.prefix}${t.value}${t.suffix}`;
+          return;
+        }
+        const current = t.value * progress;
+        const hasDecimal = String(t.value).includes('.');
+        const formatted = hasDecimal
+          ? current.toFixed(1)
+          : Math.floor(current).toLocaleString();
+        t.el.textContent = `${t.prefix}${formatted}${t.suffix}`;
+      });
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+
+    requestAnimationFrame(step);
   }
 })();

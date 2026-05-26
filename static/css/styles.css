@@ -134,9 +134,7 @@ body {
 }
 
 .personal-story .font-display {
-  margin-bottom: 3rem;
   font-weight: 700;
-  text-align: center;
 }
 
 .personal-story__paragraph {
@@ -151,11 +149,11 @@ body {
   background: transparent;
   padding: 0 !important;
   box-shadow: none;
-  max-width: 46rem;
+  max-width: 30rem;
   margin-inline: auto;
 }
 
-/* --- Personal Story Grid & Iceberg --- */
+/* --- Personal Story Grid & Waffle Diagram --- */
 .personal-story__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -163,11 +161,19 @@ body {
   align-items: center;
 }
 
+.personal-story__grid > :first-child {
+  padding-left: 1.5rem;
+}
+
 @media (min-width: 1024px) {
   .personal-story__grid {
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: start;
+  }
+
+  .personal-story__grid > :first-child {
+    padding-left: 3.5rem;
   }
 }
 
@@ -270,35 +276,53 @@ body {
 }
 
 .personal-story__source {
+  position: relative;
   display: block;
+  max-width: 450px;
+  width: 100%;
   font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #1D5FAD;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, #1d5fad 10%, #3498db 48%, #8eb1f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align: center;
-  margin: 2.5rem auto 0.5rem;
+  margin: 1.5rem auto 0.5rem;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: opacity 0.2s ease;
+}
+
+.personal-story__source::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.1px;
+  width: 100%;
+  height: 0.7px;
+  background: linear-gradient(90deg, #1d5fad 10%, #3498db 48%, #8eb1f6 100%);
 }
 
 .personal-story__source:hover {
-  color: #0F3D7A;
+  opacity: 0.8;
 }
 
-.waffle-legend {
-  width: min(100%, 34rem);
-  color: #17314f;
+/* ── Personal Story sequenced animation ── */
+.ps-hidden {
+  opacity: 0;
 }
 
-.waffle-legend__item {
-  min-width: 0;
-  line-height: 1.35;
+.personal-story__source,
+.personal-story__callout,
+.personal-story__stats .motion-stat,
+.personal-story__stats .font-ui {
+  transition: opacity 500ms ease;
 }
 
-@media (max-width: 640px) {
-  .waffle-legend {
-    grid-template-columns: 1fr !important;
-    gap: 0.75rem;
+@media (max-width: 767px) {
+  .personal-story__source {
+    max-width: 320px;
+  font-size: 16px;
   }
 }
 
