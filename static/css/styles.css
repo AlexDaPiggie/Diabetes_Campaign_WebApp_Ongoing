@@ -188,11 +188,11 @@ body {
   align-items: center;
   justify-content: center;
   box-shadow: none;
-  margin-left: -2rem;
+  margin-left: -3rem;
 }
 
 .personal-story__stats .motion-stat {
-  min-width: 9ch;
+  min-width: 0.25ch;
 }
 
 /* --- Waffle Chart --- */
