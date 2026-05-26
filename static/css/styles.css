@@ -213,8 +213,9 @@ body {
 .waffle-icon {
   width: 100%;
   height: auto;
-  fill: #e5e7eb; /* Neutral Grey */
+  fill: #9ca3af; /* Darker Grey for better contrast (WCAG AA) */
   transition: fill 0.5s ease, opacity 0.5s ease;
+  will-change: fill, opacity;
 }
 
 /* State Classes */
@@ -222,16 +223,18 @@ body {
 .waffle-icon--prediabetes { 
   fill: #3498db; 
   animation: pulse-soft 3s infinite ease-in-out;
+  will-change: opacity;
 }
 .waffle-icon--undiagnosed { 
   fill: #65b8e8; 
   animation: flicker 2s infinite ease-in-out;
+  will-change: opacity;
 }
 
 /* Scan Bar */
 .waffle-scan-bar {
   position: absolute;
-  top: -20px;
+  top: 0;
   left: 0;
   width: 100%;
   height: 4px;
@@ -240,6 +243,8 @@ body {
   opacity: 0;
   pointer-events: none;
   z-index: 10;
+  transform: translateY(-20px);
+  will-change: transform, opacity;
 }
 
 .waffle-container.scanning .waffle-scan-bar {
@@ -248,10 +253,10 @@ body {
 
 /* Animations */
 @keyframes waffle-scan {
-  0% { top: -20px; opacity: 0; }
+  0% { transform: translateY(-20px); opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
+  100% { transform: translateY(520px); opacity: 0; }
 }
 
 @keyframes pulse-soft {
@@ -589,7 +594,10 @@ button:focus-visible {
   .motion-stripe::before,
   .motion-stripe::after,
   .motion-welcome::after,
-  .personal-story::before {
+  .personal-story::before,
+  .waffle-scan-bar,
+  .waffle-icon--prediabetes,
+  .waffle-icon--undiagnosed {
     animation: none !important;
   }
 
