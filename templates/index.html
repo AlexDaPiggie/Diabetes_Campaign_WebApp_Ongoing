@@ -60,11 +60,11 @@
 
       <!-- Left Column: Narrative -->
       <div class="flex flex-col items-center text-center lg:pt-8">
-        <h2 class="font-display text-[50px] sm:text-[50px] font-bold text-ink leading-tight tracking-tight mb-16 text-center reveal" data-reveal-delay="100">
+        <h2 class="font-display text-[50px] sm:text-[50px] font-bold text-ink leading-tight tracking-tight mb-8 text-center reveal" data-reveal-delay="100">
           It Could Be Anyone!
         </h2>
         <div class="personal-story__panel relative z-10 w-full">
-          <div class="personal-story__body space-y-12 relative z-10">
+          <div class="personal-story__body space-y-8 relative z-10">
             {% for paragraph in personal_story.paragraphs %}
             <p class="personal-story__paragraph text-[20px] md:text-[20px] text-ink leading-[1.8] text-center reveal" data-reveal-delay="{{ 100 + (loop.index * 100) }}">
               {{ paragraph }}
@@ -102,11 +102,11 @@
         </a>        
         
         <!-- Legend / Stats -->
-        <div class="flex flex-wrap lg:flex-nowrap justify-center gap-x-6 lg:gap-x-10 gap-y-5 mt-6">
+        <div class="flex flex-wrap lg:flex-nowrap justify-center gap-x-5 lg:gap-x-8 gap-y-5 mt-6">
           {% for stat in personal_story.waffle.stats_detailed %}
           <div class="flex items-start gap-1.5">
             <!-- Icon Annotation -->
-            <svg class="w-6 h-6 shrink-0 mt-1 {% if stat.status == 'prediabetes' %}waffle-icon--prediabetes{% elif stat.status == 'undiagnosed' %}waffle-icon--undiagnosed{% endif %}" 
+            <svg class="w-5 h-5 shrink-0 mt-1 {% if stat.status == 'prediabetes' %}waffle-icon--prediabetes{% elif stat.status == 'undiagnosed' %}waffle-icon--undiagnosed{% endif %}" 
                  style="fill: {% if stat.color == 'gray-400' %}#9ca3af{% else %}{{ stat.color }}{% endif %};" 
                  viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
@@ -114,7 +114,7 @@
             
             <div class="flex flex-col">
               <div
-                class="motion-stat font-display text-[23px] font-medium text-ink tracking-tight animate-number"
+                class="motion-stat font-display text-[18px] font-medium text-ink tracking-tight animate-number"
                 data-target-number="{{ stat.number }}"
                 data-target-text="{{ stat.number }}"
               >0</div>
@@ -127,7 +127,7 @@
         </div>
 
         {# Elderly Callout #}
-        <div class="personal-story__callout mt-4 text-sm italic text-ink/60 text-center max-w-sm">
+        <div class="personal-story__callout mt-4 text-[14px] italic text-ink/60 text-center max-w-[307px]">
           {{ personal_story.waffle.labels.elderly_callout }}
         </div>
       </div>

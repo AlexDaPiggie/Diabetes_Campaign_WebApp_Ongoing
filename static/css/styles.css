@@ -216,13 +216,13 @@ body {
 .waffle-container {
   position: relative;
   width: 100%;
-  max-width: 420px;
+  max-width: 336px;
 }
 
 .waffle-grid {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: clamp(5px, 0.55vw, 8px);
+  gap: clamp(4px, 0.44vw, 6.4px);
 }
 
 @media (max-width: 767px) {
@@ -231,7 +231,7 @@ body {
   }
 
   .waffle-container {
-    max-width: 320px;
+    max-width: 256px;
   }
 }
 
@@ -302,10 +302,10 @@ body {
 .personal-story__source {
   position: relative;
   display: block;
-  max-width: 420px;
+  max-width: 336px;
   width: 100%;
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.02em;
   background: linear-gradient(90deg, #1d5fad 10%, #3498db 48%, #7da5f5 100%);
@@ -345,8 +345,8 @@ body {
 
 @media (max-width: 767px) {
   .personal-story__source {
-    max-width: 320px;
-  font-size: 16px;
+    max-width: 256px;
+  font-size: 13px;
   }
 }
 
