@@ -211,3 +211,43 @@
     numberObserver.observe(el);
   });
 })();
+
+/* ── Waffle Chart Scan Trigger ── */
+(function () {
+  const initWaffleScan = () => {
+    const waffle = document.getElementById('waffle-chart');
+    if (!waffle) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            waffle.classList.add('scanning');
+
+            // Staggered reveal of icons based on status
+            const icons = waffle.querySelectorAll('.waffle-icon');
+            icons.forEach((icon, index) => {
+              const status = icon.getAttribute('data-status');
+              // Delay reveal until scan bar reaches approx position
+              const delay = (index / icons.length) * 2000;
+              setTimeout(() => {
+                icon.classList.add(`waffle-icon--${status}`);
+              }, delay + 300);
+            });
+
+            observer.unobserve(waffle);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(waffle);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWaffleScan);
+  } else {
+    initWaffleScan();
+  }
+})();
