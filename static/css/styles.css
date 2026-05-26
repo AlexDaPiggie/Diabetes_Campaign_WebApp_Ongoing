@@ -270,14 +270,19 @@ body {
 }
 
 .personal-story__source {
-  width: min(100%, 34rem);
-  margin: 2rem auto 0;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(94, 127, 160, 0.22);
-  font-size: 0.75rem;
-  line-height: 1.5;
-  color: #4c6f8f;
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1D5FAD;
   text-align: center;
+  margin: 2.5rem auto 0.5rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.personal-story__source:hover {
+  color: #0F3D7A;
 }
 
 .waffle-legend {

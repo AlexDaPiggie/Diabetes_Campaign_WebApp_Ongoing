@@ -26,18 +26,20 @@
     ],
     "waffle": {
       "stats": {
-        "diagnosed": 11,
-        "undiagnosed": 5,
-        "prediabetes": 38,
-        "healthy": 46
+        "diagnosed": 9,
+        "undiagnosed": 3,
+        "prediabetes": 35,
+        "healthy": 53
       },
       "labels": {
-        "diagnosed": "Diagnosed (29.4M)",
-        "undiagnosed": "Hidden Millions (8.7M)",
-        "prediabetes": "The Warning Zone (97.6M)",
-        "healthy": "Normal (120M)"
+        "diagnosed": "Diagnosed (29.0M)",
+        "undiagnosed": "Undiagnosed (11.1M)",
+        "prediabetes": "The Warning Zone (115.2M)",
+        "healthy": "Normal (178.9M)",
+        "elderly_callout": "Among adults over 65, prediabetes rises to 52.1%."
       },
-      "source": "Source: CDC National Diabetes Statistics Report 2024 & NCHS Data Brief No. 516. Data represents US adults (18+) from 2021–2023."
+      "source": "Source: CDC National Diabetes Statistics Report 2024",
+      "source_url": "https://usdss.cdc.gov/diabetes/report.html"
     }
   },
   "hero": {

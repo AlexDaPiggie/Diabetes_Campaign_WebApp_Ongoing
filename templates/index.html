@@ -75,7 +75,7 @@
 
       <!-- Right Column: Waffle Chart -->
       <div class="personal-story__stats flex flex-col items-center justify-center">
-        <div class="waffle-container" id="waffle-chart" role="img" aria-label="Waffle chart showing diabetes statistics: 11% diagnosed, 5% hidden millions, 38% in the warning zone, and 46% normal.">
+        <div class="waffle-container" id="waffle-chart" role="img" aria-label="Waffle chart showing diabetes statistics: 9% diagnosed, 3% undiagnosed, 35% in the warning zone, and 53% normal.">
           <div class="waffle-scan-bar"></div>
           <div class="waffle-grid">
             {# Dynamic waffle icons based on content.json stats #}
@@ -93,6 +93,11 @@
             {% endfor %}
           </div>
         </div>
+
+        <!-- Source Attribution -->
+        <a href="{{ personal_story.waffle.source_url }}" class="personal-story__source hover:underline" target="_blank" rel="noopener noreferrer">
+          {{ personal_story.waffle.source }}
+        </a>
 
         <!-- Legend -->
         <div class="waffle-legend mt-10 grid grid-cols-2 gap-4 text-xs font-bold tracking-wider uppercase">
@@ -114,9 +119,9 @@
           </div>
         </div>
 
-        <!-- Source Attribution -->
-        <div class="personal-story__source">
-          {{ personal_story.waffle.source }}
+        {# Elderly Callout #}
+        <div class="personal-story__callout mt-6 text-sm italic text-ink/60 text-center max-w-sm">
+          {{ personal_story.waffle.labels.elderly_callout }}
         </div>
       </div>
     </div>
