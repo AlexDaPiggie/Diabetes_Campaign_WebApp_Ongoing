@@ -38,9 +38,9 @@
         { "status": "healthy", "number": "178.9M", "label": "Are Healthy", "color": "gray-400" }
       ],
       "labels": {
-        "elderly_callout": "Among adults over 65, up to 52.1% have prediabetes."
+        "elderly_callout": "Up to 52.1% adults over 65 have prediabetes."
       },
-      "source": "Link: National Diabetes Statistics Report 2024",
+      "source": "National Diabetes Statistics Report 2024",
       "source_url": "https://usdss.cdc.gov/diabetes/report.html"
     }
   },
