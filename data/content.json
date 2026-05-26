@@ -23,12 +23,19 @@
     "paragraphs": [
       "No warning signs, creeping up quietly. That was how diabetes came to my dad. Everything felt normal until the day he received a life-changing diagnosis: severe Type 2 diabetes. The damage was already done. He was told to start insulin immediately, and would likely be on it for the rest of his life."
     ],
-    "iceberg": {
-      "layers": [
-        { "label": "Diagnosed Adults", "stat": "29.4 Million", "depth": "tip" },
-        { "label": "Undiagnosed (The Missing Millions)", "stat": "8.7 Million", "depth": "middle", "age_callout": "Risk triples after 40" },
-        { "label": "Prediabetes (8 in 10 don't know)", "stat": "97.6 Million", "depth": "base" }
-      ],
+    "waffle": {
+      "stats": {
+        "diagnosed": 11,
+        "undiagnosed": 5,
+        "prediabetes": 38,
+        "healthy": 46
+      },
+      "labels": {
+        "diagnosed": "Diagnosed (29.4M)",
+        "undiagnosed": "Hidden Millions (8.7M)",
+        "prediabetes": "The Warning Zone (97.6M)",
+        "healthy": "Normal (120M)"
+      },
       "source": "Source: CDC National Diabetes Statistics Report 2024 & NCHS Data Brief No. 516. Data represents US adults (18+) from 2021–2023."
     }
   },

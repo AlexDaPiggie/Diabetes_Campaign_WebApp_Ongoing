@@ -310,7 +310,7 @@ body {
 .reveal {
   opacity: 0;
   filter: blur(8px);
-  transform: translateY(26px) scale(0.985);
+  transform: translateY(31.2px) scale(0.985);
   transition:
     opacity 780ms cubic-bezier(0.16, 1, 0.3, 1),
     filter 780ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -319,7 +319,7 @@ body {
 }
 
 .reveal-image {
-  transform: translateY(30px) scale(0.97);
+  transform: translateY(36px) scale(0.97);
   transition-duration: 940ms;
 }
 
