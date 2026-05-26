@@ -59,11 +59,11 @@
 
       <!-- Left Column: Narrative -->
       <div class="flex flex-col items-center text-center lg:pt-8">
-        <h2 class="font-display text-[51.84px] sm:text-[64.8px] font-bold text-ink leading-tight tracking-tight mb-12 text-center reveal" data-reveal-delay="100">
+        <h2 class="font-display text-[51.84px] sm:text-[64.8px] font-bold text-ink leading-tight tracking-tight mb-16 text-center reveal" data-reveal-delay="100">
           It Could Be Anyone!
         </h2>
         <div class="personal-story__panel relative z-10 w-full">
-          <div class="personal-story__body space-y-8 relative z-10">
+          <div class="personal-story__body space-y-12 relative z-10">
             {% for paragraph in personal_story.paragraphs %}
             <p class="personal-story__paragraph text-[20px] md:text-[20px] text-ink leading-[1.8] text-center reveal" data-reveal-delay="{{ 100 + (loop.index * 100) }}">
               {{ paragraph }}
@@ -101,7 +101,7 @@
         </a>        
         
         <!-- Legend / Stats -->
-        <div class="flex flex-wrap lg:flex-nowrap justify-center gap-x-6 lg:gap-x-10 gap-y-8 mt-10">
+        <div class="flex flex-wrap lg:flex-nowrap justify-center gap-x-6 lg:gap-x-10 gap-y-5 mt-6">
           {% for stat in personal_story.waffle.stats_detailed %}
           <div class="flex items-start gap-1.5">
             <!-- Icon Annotation -->
@@ -126,7 +126,7 @@
         </div>
 
         {# Elderly Callout #}
-        <div class="personal-story__callout mt-6 text-sm italic text-ink/60 text-center max-w-sm">
+        <div class="personal-story__callout mt-4 text-sm italic text-ink/60 text-center max-w-sm">
           {{ personal_story.waffle.labels.elderly_callout }}
         </div>
       </div>

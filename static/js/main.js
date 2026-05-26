@@ -326,8 +326,8 @@
 
     // Phase 3: Synchronized number counting (1000–2500ms)
     setTimeout(() => {
-      animateNumbersSync(animateNumbers, 350);
-    }, 1000);
+      animateNumbersSync(animateNumbers, 750);
+    }, 1750);
 
     // Phase 4: Callout fade in (1750–2250ms)
     setTimeout(() => {

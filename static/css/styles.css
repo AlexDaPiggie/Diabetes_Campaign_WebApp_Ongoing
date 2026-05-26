@@ -288,9 +288,9 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
-  margin: 1.5rem auto 0.5rem;
+  margin: 1rem auto 0.25rem;
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, text-shadow 0.3s ease;
 }
 
 .personal-story__source::after {
@@ -304,7 +304,7 @@ body {
 }
 
 .personal-story__source:hover {
-  opacity: 0.8;
+  text-shadow: 0 0 12px rgba(52, 152, 219, 0.6), 0 0 24px rgba(52, 152, 219, 0.3);
 }
 
 /* ── Personal Story sequenced animation ── */
