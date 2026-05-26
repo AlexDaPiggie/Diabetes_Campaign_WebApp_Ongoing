@@ -127,103 +127,142 @@ body {
 
 /* --- Personal Story: Centered Narrative --- */
 .personal-story {
-  background:
-    linear-gradient(180deg, #fafcff 0%, #eef7ff 52%, #fafcff 100%);
+  position: relative;
+  background: linear-gradient(180deg, #fafcff 0%, #eef7ff 52%, #fafcff 100%);
   isolation: isolate;
+  overflow: hidden;
+}
+
+/* Diagonal Background for Diagram Side */
+.personal-story::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.6) 0%, transparent 40%),
+    linear-gradient(180deg, #65b8e8 0%, #3498db 45%, #1d5fad 100%);
+  clip-path: polygon(60% 0, 100% 0, 100% 100%, 40% 100%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .personal-story .font-display {
   margin-bottom: 4rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .personal-story__paragraph {
   text-wrap: pretty;
   transition-duration: 1200ms !important;
-}
-
-.personal-story::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 20% 15%, rgba(29, 95, 173, 0.10), transparent 42%),
-    linear-gradient(90deg, rgba(126, 200, 227, 0.10), transparent 65%);
-  z-index: 0;
+  text-align: center;
+  line-height: 1.8;
 }
 
 .personal-story__panel {
   isolation: isolate;
-  background:
-    linear-gradient(135deg, rgba(240, 248, 255, 0.94), rgba(232, 244, 255, 0.82));
-  box-shadow: 0 18px 55px rgba(15, 61, 122, 0.10);
-}
-
-.personal-story__quote-mark {
-  top: 0.1rem;
-  left: 1.2rem;
-  color: rgba(29, 95, 173, 0.15);
-  font-size: 7rem;
-  line-height: 1;
-  z-index: 0;
-}
-
-.personal-story__copy {
-  z-index: 1;
+  background: transparent;
+  padding: 0 !important;
+  box-shadow: none;
 }
 
 /* --- Personal Story Grid & Iceberg --- */
 .personal-story__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 4rem;
   align-items: center;
 }
 
 @media (min-width: 1024px) {
   .personal-story__grid {
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 6rem;
   }
 }
 
 .personal-story__stats {
   position: relative;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  background: linear-gradient(180deg, #eef7ff 0%, #3498db 40%, #1d5fad 100%);
-  min-height: 400px;
+  background: transparent;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 18px 55px rgba(15, 61, 122, 0.15);
+  box-shadow: none;
 }
 
-.iceberg-svg {
+/* --- Waffle Chart --- */
+.waffle-container {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+}
+
+.waffle-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 767px) {
+  .waffle-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.waffle-icon {
   width: 100%;
   height: auto;
-  max-width: 320px;
+  fill: #e5e7eb; /* Neutral Grey */
+  transition: fill 0.5s ease, opacity 0.5s ease;
 }
 
-.iceberg-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  fill: #0f2a4a;
+/* State Classes */
+.waffle-icon--diagnosed { fill: #0f2a4a; }
+.waffle-icon--prediabetes { 
+  fill: #3498db; 
+  animation: pulse-soft 3s infinite ease-in-out;
+}
+.waffle-icon--undiagnosed { 
+  fill: #65b8e8; 
+  animation: flicker 2s infinite ease-in-out;
 }
 
-.iceberg-stat {
-  font-size: 1.25rem;
-  font-weight: 700;
-  fill: #0f2a4a;
+/* Scan Bar */
+.waffle-scan-bar {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #65b8e8, transparent);
+  box-shadow: 0 0 15px #65b8e8;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
 }
 
-.iceberg-label--submerged {
-  fill: rgba(255, 255, 255, 0.9);
+.waffle-container.scanning .waffle-scan-bar {
+  animation: waffle-scan 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.iceberg-stat--submerged {
-  fill: #ffffff;
+/* Animations */
+@keyframes waffle-scan {
+  0% { top: -20px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.4; }
+  75% { opacity: 0.8; }
 }
 
 .personal-story__source {
