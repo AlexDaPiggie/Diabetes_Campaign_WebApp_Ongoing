@@ -58,14 +58,14 @@
     <div class="personal-story__grid">
 
       <!-- Left Column: Narrative -->
-      <div class="flex flex-col items-center text-center">
+      <div class="flex flex-col items-center text-center lg:pt-8">
         <h2 class="font-display text-[51.84px] sm:text-[64.8px] font-bold text-ink leading-tight tracking-tight mb-12 text-center reveal" data-reveal-delay="100">
-          Before it's too late
+          It Could Be Anyone!
         </h2>
         <div class="personal-story__panel relative z-10 w-full">
           <div class="personal-story__body space-y-8 relative z-10">
             {% for paragraph in personal_story.paragraphs %}
-            <p class="personal-story__paragraph text-[18px] md:text-[20px] text-ink leading-[1.8] text-center reveal" data-reveal-delay="{{ 100 + (loop.index * 100) }}">
+            <p class="personal-story__paragraph text-[22px] md:text-[24px] text-ink leading-[1.8] text-center reveal" data-reveal-delay="{{ 100 + (loop.index * 100) }}">
               {{ paragraph }}
             </p>
             {% endfor %}

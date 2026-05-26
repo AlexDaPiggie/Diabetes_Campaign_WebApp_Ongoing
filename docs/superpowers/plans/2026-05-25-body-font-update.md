@@ -1,70 +1,72 @@
-# Body Text Font Update Implementation Plan (Final)
+# Personal Story Body Text Size Update Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Transform website typography and visual hierarchy using Open Sans (300) with precise scaling and aesthetic refinements.
+**Goal:** Increase the body text size of the personal story section by 20% (from 18px/20px to 22px/24px) for better readability.
 
-**Architecture:**
-- Import Open Sans (300-700) from Google Fonts.
-- Update Tailwind config for neutral charcoal text colors and font family.
-- Apply explicit decimal-based values for 8% heading scale and 20% vertical scale.
-- Implement responsive body text (18px mobile / 20px desktop).
+**Architecture:** Direct update of Tailwind-style utility classes in the Jinja2 template.
 
-**Tech Stack:** HTML, CSS, Tailwind CSS, Google Fonts
+**Tech Stack:** HTML/Jinja2, Tailwind CSS (Utility Classes).
 
 ---
 
-### Task 1: Core Configuration and Global Styles
+### Task 1: Update Verification Test
 
 **Files:**
-- Modify: `templates/base.html`
-- Modify: `static/css/styles.css`
+- Modify: `tests/test_personal_story.py`
 
-- [ ] **Step 1: Update Google Fonts and Tailwind Theme in `base.html`.**
-- Replace Inter with Open Sans (300-700).
-- Update Colors: `ink: #0D0F10`, `ink-dim: #33383D`, `ink-muted: #595E63`.
-- Update Font Family `ui`: `["Open Sans", "Arial", "sans-serif", "serif"]`.
+- [ ] **Step 1: Update the test to expect new font sizes**
 
-- [ ] **Step 2: Update `body` tag and global CSS variables.**
-- Apply: `text-[18px] md:text-[20px]`, `leading-[25.2px] md:leading-[28px]`, `font-light`, `tracking-tight` (only for body).
-- Update `static/css/styles.css`:
-    - Increase `motion-stripe` height from 8px to **9.6px**.
-    - Increase `translateY(24px)` to **28.8px** in `motionEnter` animation.
-    - Reduce background glow/sweep opacities by 20% (relative to current).
+```python
+def test_personal_story_typography(client):
+    response = client.get('/')
+    html = response.data.decode()
+    # Check for new mobile size
+    assert 'text-[22px]' in html
+    # Check for new desktop size
+    assert 'md:text-[24px]' in html
+    # Ensure old sizes are gone
+    assert 'text-[18px]' not in html
+    assert 'md:text-[20px]' not in html
+```
 
-### Task 2: Adjust Layout and Component Hierarchy
+- [ ] **Step 2: Run test to verify it fails**
+
+Run: `pytest tests/test_personal_story.py`
+Expected: FAIL (AssertionError for 'text-[22px]' not in html)
+
+- [ ] **Step 3: Commit test change**
+
+```bash
+git add tests/test_personal_story.py
+git commit -m "test: update personal story typography expectations"
+```
+
+### Task 2: Implement Typography Update
 
 **Files:**
 - Modify: `templates/index.html`
 
-- [ ] **Step 1: Scale Headings (>=30px) by 8%.**
-- 36px → **38.88px**
-- 48px → **51.84px**
-- 60px → **64.8px**
-- 72px → **77.76px**
-- (Apply to both mobile and desktop classes).
+- [ ] **Step 1: Update utility classes in the template**
 
-- [ ] **Step 2: Scale Vertical Padding by 20%.**
-- `py-20` (80px) → `py-[96px]`
-- `py-24` (96px) → `py-[115.2px]`
-- `py-28` (112px) → `py-[134.4px]`
-- `py-32` (128px) → `py-[153.6px]`
-- `pt-16` (64px) → `pt-[76.8px]`
+Locate the `.personal-story__paragraph` element and update its classes.
 
-- [ ] **Step 3: Update Buttons and Labels to 16px.**
-- Buttons: `text-sm` (14px) → `text-[16px]`.
-- Eyebrows/Badges: `text-xs` (12px) → `text-[16px]`.
+```html
+<!-- old -->
+<p class="personal-story__paragraph text-[18px] md:text-[20px] text-ink leading-[1.8] text-center reveal" ...>
 
-- [ ] **Step 4: Audit Nav and Footer.**
-- Ensure they remain at 14px (no change).
+<!-- new -->
+<p class="personal-story__paragraph text-[22px] md:text-[24px] text-ink leading-[1.8] text-center reveal" ...>
+```
 
-### Task 3: Verification and Test Updates
+- [ ] **Step 2: Run test to verify it passes**
 
-**Files:**
-- Modify: `tests/test_content_typography.py`
+Run: `pytest tests/test_personal_story.py`
+Expected: PASS
 
-- [ ] **Step 1: Update typography tests to match explicit decimal values and classes.**
+- [ ] **Step 3: Commit implementation**
 
-- [ ] **Step 2: Run all tests.**
-- Run: `pytest tests/test_app_render.py tests/test_content_typography.py -v`
-- Expected: PASS
+```bash
+git add templates/index.html
+git commit -m "feat: increase personal story body text size by 20%"
+```

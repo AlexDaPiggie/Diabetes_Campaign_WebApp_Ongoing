@@ -21,6 +21,25 @@ class PersonalStoryTests(unittest.TestCase):
         self.assertNotIn("personal-story__accent-rule", template)
         self.assertIn("data-reveal-delay", template)
 
+    def test_personal_story_typography(self):
+        template = (ROOT / "templates" / "index.html").read_text(encoding="utf-8")
+        
+        # Extract personal story section to avoid false positives from other sections
+        story_start = template.find('class="personal-story')
+        story_end = template.find('<!-- HERO -->', story_start)
+        if story_end == -1: # Fallback if marker is different
+             story_end = template.find('<!-- ═══════════════ HERO ═══════════════ -->', story_start)
+        
+        story_html = template[story_start:story_end]
+        
+        # Check for new mobile size
+        self.assertIn('text-[22px]', story_html)
+        # Check for new desktop size
+        self.assertIn('md:text-[24px]', story_html)
+        # Ensure old sizes are gone from THIS section
+        self.assertNotIn('text-[18px]', story_html)
+        self.assertNotIn('md:text-[20px]', story_html)
+
     def test_personal_story_css_vitals(self):
         css = (ROOT / "static" / "css" / "styles.css").read_text(encoding="utf-8")
 
