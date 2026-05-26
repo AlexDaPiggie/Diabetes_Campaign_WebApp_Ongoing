@@ -34,12 +34,12 @@ def run_stat_animation(prefers_reduced_motion: bool) -> list[str]:
         global.document = {
           documentElement: { scrollHeight: 1000 },
           querySelector() { return null; },
+          getElementById() { return null; },
           querySelectorAll(selector) {
-            if (selector === '.animate-number') return elements;
+            if (selector === '.animate-number') return elements; 
             return [];
           },
-        };
-        global.IntersectionObserver = class {
+        };        global.IntersectionObserver = class {
           constructor(callback) {
             this.callback = callback;
             this.targets = [];
