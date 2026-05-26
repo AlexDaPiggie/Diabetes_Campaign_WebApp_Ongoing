@@ -75,24 +75,21 @@
 
       <!-- Right Column: Waffle Chart -->
       <div class="personal-story__stats flex flex-col items-center justify-center reveal" data-reveal-delay="300">
-        <div class="waffle-container" id="waffle-chart">
+        <div class="waffle-container" id="waffle-chart" role="img" aria-label="Waffle chart showing diabetes statistics: 11% diagnosed, 5% hidden millions, 38% in the warning zone, and 46% normal.">
           <div class="waffle-scan-bar"></div>
           <div class="waffle-grid">
-            {# 11 Diagnosed #}
-            {% for i in range(11) %}
-              <svg class="waffle-icon" data-status="diagnosed" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            {# Dynamic waffle icons based on content.json stats #}
+            {% for i in range(personal_story.waffle.stats.diagnosed) %}
+              <svg class="waffle-icon" data-status="diagnosed" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             {% endfor %}
-            {# 5 Undiagnosed #}
-            {% for i in range(5) %}
-              <svg class="waffle-icon" data-status="undiagnosed" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            {% for i in range(personal_story.waffle.stats.undiagnosed) %}
+              <svg class="waffle-icon" data-status="undiagnosed" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             {% endfor %}
-            {# 38 Prediabetes #}
-            {% for i in range(38) %}
-              <svg class="waffle-icon" data-status="prediabetes" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            {% for i in range(personal_story.waffle.stats.prediabetes) %}
+              <svg class="waffle-icon" data-status="prediabetes" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             {% endfor %}
-            {# 46 Healthy #}
-            {% for i in range(46) %}
-              <svg class="waffle-icon" data-status="healthy" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            {% for i in range(personal_story.waffle.stats.healthy) %}
+              <svg class="waffle-icon" data-status="healthy" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             {% endfor %}
           </div>
         </div>
@@ -100,19 +97,19 @@
         <!-- Legend -->
         <div class="mt-12 grid grid-cols-2 gap-4 text-xs font-bold tracking-wider uppercase text-ink/70">
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#0f2a4a]"></span>
+            <span class="w-3 h-3 rounded-full bg-[#0f2a4a]" aria-hidden="true"></span>
             {{ personal_story.waffle.labels.diagnosed }}
           </div>
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#65b8e8] animate-pulse"></span>
+            <span class="w-3 h-3 rounded-full bg-[#65b8e8] animate-pulse" aria-hidden="true"></span>
             {{ personal_story.waffle.labels.undiagnosed }}
           </div>
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#3498db]"></span>
+            <span class="w-3 h-3 rounded-full bg-[#3498db]" aria-hidden="true"></span>
             {{ personal_story.waffle.labels.prediabetes }}
           </div>
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-gray-300"></span>
+            <span class="w-3 h-3 rounded-full bg-gray-300" aria-hidden="true"></span>
             {{ personal_story.waffle.labels.healthy }}
           </div>
         </div>
