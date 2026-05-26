@@ -58,14 +58,14 @@
     <div class="personal-story__grid">
 
       <!-- Left Column: Narrative -->
-      <div class="reveal flex flex-col items-center text-center" data-reveal-delay="100">
-        <h2 class="font-display text-[51.84px] sm:text-[64.8px] font-bold text-ink leading-tight tracking-tight mb-12 text-center">
+      <div class="flex flex-col items-center text-center">
+        <h2 class="font-display text-[51.84px] sm:text-[64.8px] font-bold text-ink leading-tight tracking-tight mb-12 text-center reveal" data-reveal-delay="100">
           Before it's too late
         </h2>
         <div class="personal-story__panel relative z-10 w-full">
           <div class="personal-story__body space-y-8 relative z-10">
             {% for paragraph in personal_story.paragraphs %}
-            <p class="personal-story__paragraph text-[18px] md:text-[20px] text-ink leading-[1.8] text-center">
+            <p class="personal-story__paragraph text-[18px] md:text-[20px] text-ink leading-[1.8] text-center reveal" data-reveal-delay="{{ 100 + (loop.index * 100) }}">
               {{ paragraph }}
             </p>
             {% endfor %}
@@ -74,7 +74,7 @@
       </div>
 
       <!-- Right Column: Waffle Chart -->
-      <div class="personal-story__stats flex flex-col items-center justify-center reveal" data-reveal-delay="300">
+      <div class="personal-story__stats flex flex-col items-center justify-center">
         <div class="waffle-container" id="waffle-chart" role="img" aria-label="Waffle chart showing diabetes statistics: 11% diagnosed, 5% hidden millions, 38% in the warning zone, and 46% normal.">
           <div class="waffle-scan-bar"></div>
           <div class="waffle-grid">

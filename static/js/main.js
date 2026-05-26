@@ -4,7 +4,14 @@
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+          const delay = parseInt(entry.target.getAttribute('data-reveal-delay')) || 0;
+          if (delay > 0) {
+            setTimeout(() => {
+              entry.target.classList.add('revealed');
+            }, delay);
+          } else {
+            entry.target.classList.add('revealed');
+          }
           observer.unobserve(entry.target);
         }
       });
@@ -250,7 +257,7 @@
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.15 }
     );
 
     observer.observe(waffle);
