@@ -39,34 +39,33 @@
 </nav>
 
 <!-- ═══════════════ WELCOME ═══════════════ -->
-<section class="motion-welcome motion-welcome-sweep relative pt-16 flex items-center justify-center text-center min-h-[55vh]">
+<section class="motion-welcome motion-welcome-sweep relative pt-[76.8px] flex items-center justify-center text-center min-h-[55vh]">
   <div class="motion-welcome-glow absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.2),transparent_70%)]"></div>
-  <div class="motion-welcome-content relative max-w-3xl mx-auto px-6 py-20">
-    <h2 class="motion-welcome-title font-display text-5xl md:text-6xl font-medium text-white mb-6 tracking-tight">
+  <div class="motion-welcome-content relative max-w-3xl mx-auto px-6 py-[96px]">
+    <h2 class="motion-welcome-title font-display text-[51.84px] md:text-[64.8px] font-medium text-white mb-6 tracking-tight">
       {{ welcome.title }}
     </h2>
     <div class="motion-welcome-divider w-72 max-w-[70%] h-px mx-auto mb-6 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
-    <p class="motion-welcome-copy text-lg text-white/90 leading-relaxed max-w-xl mx-auto">
+    <p class="motion-welcome-copy text-[18px] md:text-[20px] text-white/90 leading-relaxed max-w-xl mx-auto">
       {{ welcome.subtitle }}
     </p>
   </div>
 </section>
 
 <!-- PERSONAL STORY -->
-<section class="personal-story relative py-24 lg:py-32 overflow-hidden" aria-label="Personal story">
+<section class="personal-story relative py-[115.2px] lg:py-[153.6px] overflow-hidden" aria-label="Personal story">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="personal-story__grid">
 
       <!-- Left Column: Narrative -->
-      <div class="reveal" data-reveal-delay="100">
-        <h2 class="font-display text-5xl sm:text-6xl font-bold text-ink leading-tight tracking-tight mb-12">
+      <div class="reveal flex flex-col items-center text-center" data-reveal-delay="100">
+        <h2 class="font-display text-[51.84px] sm:text-[64.8px] font-bold text-ink leading-tight tracking-tight mb-12 text-center">
           Before it's too late
         </h2>
-        <div class="personal-story__panel p-8 sm:p-12 rounded-2xl relative overflow-hidden">
-          <span class="personal-story__quote-mark absolute">“</span>
+        <div class="personal-story__panel relative z-10 w-full">
           <div class="personal-story__body space-y-8 relative z-10">
             {% for paragraph in personal_story.paragraphs %}
-            <p class="personal-story__paragraph text-xl text-ink leading-relaxed">
+            <p class="personal-story__paragraph text-[18px] md:text-[20px] text-ink leading-[1.8] text-center">
               {{ paragraph }}
             </p>
             {% endfor %}
@@ -74,70 +73,83 @@
         </div>
       </div>
 
-      <!-- Right Column: Iceberg Diagram -->
-      <div class="personal-story__stats reveal" data-reveal-delay="300">
-        {% set layers = personal_story.iceberg.layers %}
-        {% set tip = layers[0] %}
-        {% set middle = layers[1] %}
-        {% set base = layers[2] %}
-        <svg class="iceberg-svg" viewBox="0 0 320 400" role="img" aria-labelledby="iceberg-title iceberg-desc" xmlns="http://www.w3.org/2000/svg">
-          <title id="iceberg-title">US diabetes iceberg statistics</title>
-          <desc id="iceberg-desc">Diagnosed, undiagnosed, and prediabetes adult statistics from CDC and NCHS data.</desc>
-          <!-- Waterline -->
-          <rect y="120" width="320" height="280" fill="rgba(255,255,255,0.05)" />
+      <!-- Right Column: Waffle Chart -->
+      <div class="personal-story__stats flex flex-col items-center justify-center reveal" data-reveal-delay="300">
+        <div class="waffle-container" id="waffle-chart">
+          <div class="waffle-scan-bar"></div>
+          <div class="waffle-grid">
+            {# 11 Diagnosed #}
+            {% for i in range(11) %}
+              <svg class="waffle-icon" data-status="diagnosed" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            {% endfor %}
+            {# 5 Undiagnosed #}
+            {% for i in range(5) %}
+              <svg class="waffle-icon" data-status="undiagnosed" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            {% endfor %}
+            {# 38 Prediabetes #}
+            {% for i in range(38) %}
+              <svg class="waffle-icon" data-status="prediabetes" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            {% endfor %}
+            {# 46 Healthy #}
+            {% for i in range(46) %}
+              <svg class="waffle-icon" data-status="healthy" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            {% endfor %}
+          </div>
+        </div>
 
-          <!-- Iceberg Shape -->
-          <path d="M160 20 L220 120 L260 280 L160 380 L60 280 L100 120 Z" fill="#ffffff" opacity="0.9" />
-          <path d="M160 20 L220 120 L160 140 L100 120 Z" fill="#ffffff" />
-
-          <!-- Tip Layer -->
-          <text x="160" y="70" text-anchor="middle" class="iceberg-label">{{ tip.label.replace(' Adults', '') }}</text>
-          <text x="160" y="95" text-anchor="middle" class="iceberg-stat">{{ tip.stat.replace(' Million', 'M') }}</text>
-
-          <!-- Middle Layer (Submerged) -->
-          <text x="160" y="200" text-anchor="middle" class="iceberg-label iceberg-label--submerged">{{ middle.label.split(' (')[0] }}</text>
-          <text x="160" y="225" text-anchor="middle" class="iceberg-stat iceberg-stat--submerged">{{ middle.stat.replace(' Million', 'M') }}</text>
-          <text x="160" y="245" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">{{ middle.age_callout }}</text>
-
-          <!-- Base Layer -->
-          <text x="160" y="320" text-anchor="middle" class="iceberg-label iceberg-label--submerged">{{ base.label.split(' (')[0] }}</text>
-          <text x="160" y="345" text-anchor="middle" class="iceberg-stat iceberg-stat--submerged">{{ base.stat.replace(' Million', 'M') }}</text>
-          <text x="160" y="365" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">{{ base.label.replace('Prediabetes (', '').replace(')', '') }}</text>
-        </svg>
+        <!-- Legend -->
+        <div class="mt-12 grid grid-cols-2 gap-4 text-xs font-bold tracking-wider uppercase text-ink/70">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#0f2a4a]"></span>
+            {{ personal_story.waffle.labels.diagnosed }}
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#65b8e8] animate-pulse"></span>
+            {{ personal_story.waffle.labels.undiagnosed }}
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#3498db]"></span>
+            {{ personal_story.waffle.labels.prediabetes }}
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-gray-300"></span>
+            {{ personal_story.waffle.labels.healthy }}
+          </div>
+        </div>
       </div>
 
     </div>
 
     <!-- Source Attribution -->
     <div class="personal-story__source reveal" data-reveal-delay="400">
-      {{ personal_story.iceberg.source }}
+      {{ personal_story.waffle.source }}
     </div>
   </div>
 </section>
 
 <!-- ═══════════════ HERO ═══════════════ -->
-<section class="motion-hero relative py-20 lg:py-28 overflow-hidden">
+<section class="motion-hero relative py-[96px] lg:py-[134.4px] overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
       <!-- Text -->
       <div>
-        <span class="motion-load inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent-bright mb-5 animate-fade-up" data-load-delay="80">
+        <span class="motion-load inline-flex items-center gap-2 text-[16px] font-semibold tracking-widest uppercase text-accent-bright mb-5 animate-fade-up" data-load-delay="80">
           <span class="w-5 h-0.5 bg-accent rounded-full"></span>
           {{ hero.eyebrow }}
         </span>
-        <h1 class="motion-load font-display text-5xl sm:text-6xl lg:text-7xl font-medium text-ink leading-[1.06] tracking-tight mb-6 animate-fade-up" style="animation-delay: 0.1s" data-load-delay="160">
+        <h1 class="motion-load font-display text-[51.84px] sm:text-[64.8px] lg:text-[77.76px] font-medium text-ink leading-[1.06] tracking-tight mb-6 animate-fade-up" style="animation-delay: 0.1s" data-load-delay="160">
           {{ hero.headline }}
         </h1>
-        <p class="motion-load text-lg text-ink-dim leading-relaxed max-w-lg mb-8 animate-fade-up" style="animation-delay: 0.2s" data-load-delay="240">
+        <p class="motion-load text-[18px] md:text-[20px] text-ink-dim leading-relaxed max-w-lg mb-8 animate-fade-up" style="animation-delay: 0.2s" data-load-delay="240">
           {{ hero.subtitle }}
         </p>
 
         <div class="motion-load flex flex-wrap items-center gap-3 mb-10 animate-fade-up" style="animation-delay: 0.25s" data-load-delay="320">
-          <a href="{{ hero.cta_primary.href }}" class="motion-shimmer inline-flex items-center text-sm font-medium bg-accent hover:bg-accent-bright text-white transition-all duration-200 px-6 py-3 rounded-lg">
+          <a href="{{ hero.cta_primary.href }}" class="motion-shimmer inline-flex items-center text-[16px] font-medium bg-accent hover:bg-accent-bright text-white transition-all duration-200 px-6 py-3 rounded-lg">
             {{ hero.cta_primary.label }}
           </a>
-          <a href="{{ hero.cta_secondary.href }}" class="inline-flex items-center text-sm font-medium text-ink-dim hover:text-ink transition-colors duration-200 px-6 py-3 rounded-lg border border-border hover:border-accent/40">
+          <a href="{{ hero.cta_secondary.href }}" class="inline-flex items-center text-[16px] font-medium text-ink-dim hover:text-ink transition-colors duration-200 px-6 py-3 rounded-lg border border-border hover:border-accent/40">
             {{ hero.cta_secondary.label }}
           </a>
         </div>
@@ -147,11 +159,11 @@
           {% for stat in hero.stats %}
           <div>
             <div
-              class="motion-stat font-display text-4xl font-medium text-ink tracking-tight animate-number"
+              class="motion-stat font-display text-[38.88px] font-medium text-ink tracking-tight animate-number"
               data-target-number="{{ stat.number }}"
               data-target-text="{{ stat.number }}"
             >0</div>
-            <div class="text-sm text-ink-muted mt-1.5 max-w-[140px] leading-snug">{{ stat.label }}</div>
+            <div class="text-[16px] text-ink-muted mt-1.5 max-w-[140px] leading-snug">{{ stat.label }}</div>
           </div>
           {% endfor %}
         </div>
@@ -173,8 +185,8 @@
             <svg class="w-5 h-5 text-accent-bright" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
           </div>
           <div>
-            <strong class="block text-sm font-semibold text-ink">{{ hero.badge.title }}</strong>
-            <span class="text-xs text-ink-muted">{{ hero.badge.subtitle }}</span>
+            <strong class="block text-[16px] font-semibold text-ink">{{ hero.badge.title }}</strong>
+            <span class="text-[16px] text-ink-muted">{{ hero.badge.subtitle }}</span>
           </div>
         </div>
       </div>
@@ -188,7 +200,7 @@
 
 <!-- ═══════════════ INFO SECTIONS ═══════════════ -->
 {% for section in sections %}
-<section id="{{ section.id }}" class="relative py-20 lg:py-28 border-b border-border/40 {% if loop.index0 % 2 == 1 %}bg-surface/50{% endif %}">
+<section id="{{ section.id }}" class="relative py-[96px] lg:py-[134.4px] border-b border-border/40 {% if loop.index0 % 2 == 1 %}bg-surface/50{% endif %}">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center {% if section.reversed %}direction-rtl{% endif %}">
 
@@ -206,27 +218,27 @@
 
       <!-- Text -->
       <div>
-        <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent-bright mb-4 reveal" data-reveal-delay="80">
+        <span class="inline-flex items-center gap-2 text-[16px] font-semibold tracking-widest uppercase text-accent-bright mb-4 reveal" data-reveal-delay="80">
           <span class="w-4 h-0.5 bg-accent rounded-full"></span>
           {{ section.eyebrow }}
         </span>
-        <h2 class="font-display text-4xl sm:text-5xl font-medium text-ink leading-[1.12] tracking-tight mb-5 reveal" style="transition-delay: 0.1s" data-reveal-delay="140">
+        <h2 class="font-display text-[38.88px] sm:text-[51.84px] font-medium text-ink leading-[1.12] tracking-tight mb-5 reveal" style="transition-delay: 0.1s" data-reveal-delay="140">
           {{ section.title }}
         </h2>
-        <p class="text-lg text-ink-dim leading-relaxed mb-6 reveal" style="transition-delay: 0.15s" data-reveal-delay="200">
+        <p class="text-[18px] md:text-[20px] text-ink-dim leading-relaxed mb-6 reveal" style="transition-delay: 0.15s" data-reveal-delay="200">
           {{ section.body }}
         </p>
 
         <ul class="motion-list space-y-3 mb-8 reveal" style="transition-delay: 0.2s" data-reveal-delay="260">
           {% for item in section.bullet_items %}
-          <li class="flex items-start gap-3 text-lg text-ink-dim leading-relaxed">
+          <li class="flex items-start gap-3 text-[18px] md:text-[20px] text-ink-dim leading-relaxed">
             <span class="w-2 h-2 rounded-full bg-accent shrink-0 mt-1.5"></span>
             {{ item }}
           </li>
           {% endfor %}
         </ul>
 
-        <a href="{{ section.link.href }}" class="inline-flex items-center gap-1.5 text-lg font-medium text-accent-bright hover:gap-2.5 transition-all duration-200 reveal" style="transition-delay: 0.25s" data-reveal-delay="320">
+        <a href="{{ section.link.href }}" class="inline-flex items-center gap-1.5 text-[18px] md:text-[20px] font-medium text-accent-bright hover:gap-2.5 transition-all duration-200 reveal" style="transition-delay: 0.25s" data-reveal-delay="320">
           {{ section.link.label }}
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         </a>
@@ -244,7 +256,7 @@
 <div class="motion-stripe bg-gradient-to-r from-accent via-accent-bright to-accent/30"></div>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
-<footer class="bg-surface/60 border-t border-border/30 py-16 lg:py-20">
+<footer class="bg-surface/60 border-t border-border/30 py-[76.8px] lg:py-[96px]">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
 
@@ -257,7 +269,7 @@
       <!-- Link columns -->
       {% for col in footer.columns %}
       <div>
-        <div class="text-xs font-semibold tracking-widest uppercase text-ink-dim mb-4">{{ col.title }}</div>
+        <div class="text-[16px] font-semibold tracking-widest uppercase text-ink-dim mb-4">{{ col.title }}</div>
         <ul class="space-y-2.5">
           {% for link in col.links %}
           <li><a href="{{ link.href }}" class="text-sm text-ink-muted hover:text-ink transition-colors duration-200">{{ link.label }}</a></li>
