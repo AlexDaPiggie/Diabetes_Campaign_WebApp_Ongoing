@@ -352,6 +352,17 @@
       return { el, prefix: '', value: 0, suffix: '', raw };
     });
 
+    // Pre-measure and lock widths to prevent layout shift during animation
+    targets.forEach(t => {
+      if (t.raw) return;
+      const finalText = `${t.prefix}${t.value}${t.suffix}`;
+      const prevText = t.el.textContent;
+      t.el.textContent = finalText;
+      const w = t.el.offsetWidth;
+      t.el.style.width = w + 'px';
+      t.el.textContent = prevText;
+    });
+
     const startTime = performance.now();
 
     function step(now) {

@@ -21,7 +21,7 @@
   },
   "personal_story": {
     "paragraphs": [
-      "A few years ago, my dad walked into a hospital for a routine visit and walked out with a life-changing diagnosis. Severe Type 2 diabetes. The damage was already done. He was told to start insulin immediately, and most likely, he'd be on it for the result of his life.",
+      "A few years ago, my dad walked into a hospital for a routine visit and walked out with a life-changing diagnosis - Severe Type 2 diabetes. The damage was already done. He was told to start insulin immediately, and most likely, he'd be on it for the result of his life.",
       "No dramatic warning signs. No moment where he thought, 'something is really wrong.' It crept up quietly, the way diabetes so often does, and by the time it showed up, it had already been building for years."
     ],
     "waffle": {
@@ -40,7 +40,7 @@
       "labels": {
         "elderly_callout": "Up to 52.1% adults over 65 have prediabetes."
       },
-      "source": "National Diabetes Statistics Report 2024",
+      "source": "US National Diabetes Statistics Report 2024",
       "source_url": "https://usdss.cdc.gov/diabetes/report.html"
     }
   },
