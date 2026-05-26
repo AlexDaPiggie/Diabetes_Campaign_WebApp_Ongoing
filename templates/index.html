@@ -95,31 +95,30 @@
         </div>
 
         <!-- Legend -->
-        <div class="mt-12 grid grid-cols-2 gap-4 text-xs font-bold tracking-wider uppercase text-ink/70">
-          <div class="flex items-center gap-2">
+        <div class="waffle-legend mt-10 grid grid-cols-2 gap-4 text-xs font-bold tracking-wider uppercase">
+          <div class="waffle-legend__item flex items-center gap-2">
             <span class="w-3 h-3 rounded-full bg-[#0f2a4a]" aria-hidden="true"></span>
             {{ personal_story.waffle.labels.diagnosed }}
           </div>
-          <div class="flex items-center gap-2">
+          <div class="waffle-legend__item flex items-center gap-2">
             <span class="w-3 h-3 rounded-full bg-[#65b8e8] animate-pulse" aria-hidden="true"></span>
             {{ personal_story.waffle.labels.undiagnosed }}
           </div>
-          <div class="flex items-center gap-2">
+          <div class="waffle-legend__item flex items-center gap-2">
             <span class="w-3 h-3 rounded-full bg-[#3498db]" aria-hidden="true"></span>
             {{ personal_story.waffle.labels.prediabetes }}
           </div>
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-gray-300" aria-hidden="true"></span>
+          <div class="waffle-legend__item flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-gray-400" aria-hidden="true"></span>
             {{ personal_story.waffle.labels.healthy }}
           </div>
         </div>
+
+        <!-- Source Attribution -->
+        <div class="personal-story__source">
+          {{ personal_story.waffle.source }}
+        </div>
       </div>
-
-    </div>
-
-    <!-- Source Attribution -->
-    <div class="personal-story__source reveal" data-reveal-delay="400">
-      {{ personal_story.waffle.source }}
     </div>
   </div>
 </section>

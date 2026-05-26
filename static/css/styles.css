@@ -133,21 +133,8 @@ body {
   overflow: hidden;
 }
 
-/* Diagonal Background for Diagram Side */
-.personal-story::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.6) 0%, transparent 40%),
-    linear-gradient(180deg, #65b8e8 0%, #3498db 45%, #1d5fad 100%);
-  clip-path: polygon(60% 0, 100% 0, 100% 100%, 40% 100%);
-  z-index: -1;
-  pointer-events: none;
-}
-
 .personal-story .font-display {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   font-weight: 700;
   text-align: center;
 }
@@ -164,6 +151,8 @@ body {
   background: transparent;
   padding: 0 !important;
   box-shadow: none;
+  max-width: 46rem;
+  margin-inline: auto;
 }
 
 /* --- Personal Story Grid & Iceberg --- */
@@ -177,14 +166,15 @@ body {
 @media (min-width: 1024px) {
   .personal-story__grid {
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    gap: 5rem;
   }
 }
 
 .personal-story__stats {
   position: relative;
   background: transparent;
-  min-height: 500px;
+  min-height: 0;
+  padding-block: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -195,18 +185,22 @@ body {
 .waffle-container {
   position: relative;
   width: 100%;
-  max-width: 450px;
+  max-width: 420px;
 }
 
 .waffle-grid {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: 8px;
+  gap: clamp(5px, 0.55vw, 8px);
 }
 
 @media (max-width: 767px) {
   .waffle-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  .waffle-container {
+    max-width: 320px;
   }
 }
 
@@ -229,6 +223,10 @@ body {
   fill: #65b8e8; 
   animation: flicker 2s infinite ease-in-out;
   will-change: opacity;
+}
+.waffle-icon--healthy {
+  fill: #b7c4cf;
+  opacity: 0.8;
 }
 
 /* Scan Bar */
@@ -253,10 +251,10 @@ body {
 
 /* Animations */
 @keyframes waffle-scan {
-  0% { transform: translateY(-20px); opacity: 0; }
+  0% { top: -20px; opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
-  100% { transform: translateY(520px); opacity: 0; }
+  100% { top: calc(100% + 20px); opacity: 0; }
 }
 
 @keyframes pulse-soft {
@@ -271,12 +269,31 @@ body {
 }
 
 .personal-story__source {
-  margin-top: 4rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(197, 223, 240, 0.4);
+  width: min(100%, 34rem);
+  margin: 2rem auto 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(94, 127, 160, 0.22);
   font-size: 0.75rem;
-  color: #5e7fa0;
+  line-height: 1.5;
+  color: #4c6f8f;
   text-align: center;
+}
+
+.waffle-legend {
+  width: min(100%, 34rem);
+  color: #17314f;
+}
+
+.waffle-legend__item {
+  min-width: 0;
+  line-height: 1.35;
+}
+
+@media (max-width: 640px) {
+  .waffle-legend {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem;
+  }
 }
 
 .motion-load {
