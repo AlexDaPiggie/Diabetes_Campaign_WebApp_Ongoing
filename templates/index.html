@@ -66,8 +66,8 @@
         <div class="personal-story__panel relative z-10 w-full">
           <div class="personal-story__body space-y-8 relative z-10">
             {% for paragraph in personal_story.paragraphs %}
-            <p class="personal-story__paragraph text-[20px] md:text-[20px] text-ink leading-[1.8] text-center reveal" data-reveal-delay="{{ 100 + (loop.index * 100) }}">
-              {{ paragraph }}
+            <p class="personal-story__paragraph text-[18px] md:text-[20px] text-ink leading-[1.8] text-center reveal" data-reveal-delay="{{ 100 + (loop.index * 100) }}">
+              {{ paragraph | safe }}
             </p>
             {% endfor %}
           </div>
@@ -102,7 +102,7 @@
         </a>        
         
         <!-- Legend / Stats -->
-        <div class="flex flex-wrap lg:flex-nowrap justify-center gap-x-5 lg:gap-x-8 gap-y-5 mt-6">
+        <div class="flex flex-wrap lg:flex-nowrap justify-center gap-x-2 lg:gap-x-4 gap-y-5 mt-[19.2px]">
           {% for stat in personal_story.waffle.stats_detailed %}
           <div class="flex items-start gap-1.5">
             <!-- Icon Annotation -->
@@ -118,7 +118,7 @@
                 data-target-number="{{ stat.number }}"
                 data-target-text="{{ stat.number }}"
               >0</div>
-              <div class="font-ui text-[14px] font-light text-ink-muted leading-[20px] -mt-1.0 max-w-[100px]">
+              <div class="font-ui text-[14px] font-light text-ink-muted leading-[20px] -mt-1.0 max-w-[80px]">
                 {{ stat.label }}
               </div>
             </div>
@@ -127,8 +127,8 @@
         </div>
 
         {# Elderly Callout #}
-        <div class="personal-story__callout mt-4 text-[14px] italic text-ink/60 text-center max-w-[307px]">
-          {{ personal_story.waffle.labels.elderly_callout }}
+        <div class="personal-story__callout mt-[12.8px] text-[16px] italic text-ink/60 text-center max-w-[350px]">
+          {{ personal_story.waffle.labels.elderly_callout | safe }}
         </div>
       </div>
     </div>

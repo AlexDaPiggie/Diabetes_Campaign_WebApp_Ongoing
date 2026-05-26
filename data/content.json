@@ -16,13 +16,13 @@
     "cta_secondary": { "label": "Find Support", "href": "#community" }
   },
   "welcome": {
-    "title": "Welcome",
-    "subtitle": "Millions of people around the world live with diabetes. We're here to help you recognise the signs, understand your treatment options, and connect with a community that truly gets it."
+    "title": "Diabetes Awareness",
+    "subtitle": "Because understanding your diagnosis changes everything. A guide built from a real story, for real people."
   },
   "personal_story": {
     "paragraphs": [
-      "A few years ago, my dad walked into a hospital for a routine visit and walked out with a life-changing diagnosis - Severe Type 2 diabetes. The damage was already done. He was told to start insulin immediately, and most likely, he'd be on it for the result of his life.",
-      "No dramatic warning signs. No moment where he thought, 'something is really wrong.' It crept up quietly, the way diabetes so often does, and by the time it showed up, it had already been building for years."
+      "A few years ago, my dad walked into a hospital for a routine visit and walked out with a <strong>life-changing</strong> diagnosis - <strong>Severe Type 2 Diabetes</strong>. The damage was already done. He was told to start insulin immediately, and most likely, he'd be on it for the <strong>rest of his life</strong>.",
+      "No dramatic warning signs. No moment where he thought, 'something is really wrong.' It crept up quietly, <strong>the way diabetes so often does</strong>, and by the time it showed up, it had already been building for years."
     ],
     "waffle": {
       "stats": {
@@ -38,7 +38,7 @@
         { "status": "healthy", "number": "178.9M", "label": "Are Healthy", "color": "gray-400" }
       ],
       "labels": {
-        "elderly_callout": "Up to 52.1% adults over 65 have prediabetes."
+        "elderly_callout": "Up to <strong>52.1%</strong> adults <strong>over 64</strong> have <strong>prediabetes</strong>."
       },
       "source": "US National Diabetes Statistics Report 2024",
       "source_url": "https://usdss.cdc.gov/diabetes/report.html"

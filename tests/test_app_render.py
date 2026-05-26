@@ -10,5 +10,5 @@ class AppRenderTests(unittest.TestCase):
         response = TestClient(app).get("/")
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn("Before it's too late", response.text)
+        self.assertIn("It Could Be Anyone!", response.text)
         self.assertIn("personal-story__stats", response.text)

@@ -32,13 +32,13 @@ class PersonalStoryTests(unittest.TestCase):
         
         story_html = template[story_start:story_end]
         
-        # Check for new mobile size
-        self.assertIn('text-[22px]', story_html)
-        # Check for new desktop size
-        self.assertIn('md:text-[24px]', story_html)
-        # Ensure old sizes are gone from THIS section
-        self.assertNotIn('text-[18px]', story_html)
-        self.assertNotIn('md:text-[20px]', story_html)
+        # Check for original mobile size
+        self.assertIn('text-[18px]', story_html)
+        # Check for original desktop size
+        self.assertIn('md:text-[20px]', story_html)
+        # Ensure larger sizes are gone
+        self.assertNotIn('text-[22px]', story_html)
+        self.assertNotIn('md:text-[24px]', story_html)
 
     def test_personal_story_css_vitals(self):
         css = (ROOT / "static" / "css" / "styles.css").read_text(encoding="utf-8")

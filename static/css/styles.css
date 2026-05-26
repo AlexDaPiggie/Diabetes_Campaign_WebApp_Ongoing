@@ -160,13 +160,13 @@ body {
   text-wrap: pretty;
   transition-duration: 1200ms !important;
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.6;
 }
 
 .personal-story__panel {
   isolation: isolate;
   background: transparent;
-  padding: 1 !important;
+  padding: 1rem !important;
   box-shadow: none;
   max-width: 35rem;
   margin-inline: auto;
@@ -312,7 +312,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
-  margin: 1rem auto 0.25rem;
+  margin: 0.8rem auto 0.2rem;
   text-decoration: none;
   transition: opacity 0.2s ease, text-shadow 0.3s ease;
 }
